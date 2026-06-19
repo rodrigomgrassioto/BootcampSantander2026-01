@@ -58,53 +58,53 @@ private static void newAccount() {
 private static void getSaldo() {
     if (account == null) {
         System.out.println("⚠️ Favor criar uma conta.");
-    } else {
-        account.getBalance();
+        return;
     }
+    account.getBalance();
 }
 
 private static void getChequeEspecial(){
     if (account == null) {
         System.out.println("⚠️ Favor criar uma conta.");
-    } else {
-        account.getOverdraftLimit();
+        return;
     }
+    account.getOverdraftLimit();
 }
 
 public static void depositar(){
     if (account == null) {
         System.out.println("⚠️ Favor criar uma conta.");
-    } else {
-        double depositoValor = 0;
-        do {
-            System.out.println("Valor do depóstio: (Zero para retornar).");
-            depositoValor = scanner.nextDouble();
-            if (depositoValor < 0){
-                System.out.println("Valor do depóstio deve ter valor positivo.");
-                depositoValor = 0;
-            }
-            if (depositoValor > 0){
-                System.out.println("Conferindo valor a ser depositado.");
-                account.deposit(depositoValor);
-                depositoValor = 0;
-            }
-        } while (depositoValor != 0);
+        return;
     }
+    double depositoValor = 0;
+    do {
+        System.out.println("Valor do depóstio: (Zero para retornar).");
+        depositoValor = scanner.nextDouble();
+        if (depositoValor < 0){
+            System.out.println("Valor do depóstio deve ter valor positivo.");
+            depositoValor = 0;
+        }
+        if (depositoValor > 0){
+            System.out.println("Conferindo valor a ser depositado.");
+            account.deposit(depositoValor);
+            depositoValor = 0;
+        }
+    } while (depositoValor != 0);
 }
 
 private static void sacar(){
     if (account == null) {
         System.out.println("⚠️ Favor criar uma conta.");
-    } else {
-        double saqueValor = 0;
-        do {
-            System.out.println("Valor do Saque: (Zero para retornar).");
-            saqueValor = scanner.nextDouble();
-            if (saqueValor > 0){
-                System.out.printf("Verificando saldo para realizar o saque de R$ %s \n",saqueValor);
-                account.withdraw(saqueValor);
-                saqueValor = 0;
-            }
-        } while (saqueValor != 0);
+        return;
     }
+    double saqueValor = 0;
+    do {
+        System.out.println("Valor do Saque: (Zero para retornar).");
+        saqueValor = scanner.nextDouble();
+        if (saqueValor > 0){
+            System.out.printf("Verificando saldo para realizar o saque de R$ %s \n",saqueValor);
+            account.withdraw(saqueValor);
+            saqueValor = 0;
+        }
+    } while (saqueValor != 0);
 }
