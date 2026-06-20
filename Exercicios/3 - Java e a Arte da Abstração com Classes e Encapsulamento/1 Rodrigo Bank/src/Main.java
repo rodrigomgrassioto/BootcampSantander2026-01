@@ -3,6 +3,7 @@ import javax.swing.*;
 private final static Scanner scanner = new Scanner(System.in);
 private static CheckingAccount account =null;
 void main() {
+    // Possibilidade de ter espeço nos valores digitados pelo usuário
     scanner.useDelimiter("\\n");
 
     var option = -1;
@@ -10,13 +11,13 @@ void main() {
     do {
         System.out.println("===============================");
         System.out.println("====+====Rodrigo Bankt=========");
-        System.out.println("===============================\n");
+        System.out.printf("===============================%n%n");
 
         System.out.println("Bem vindo!");
         System.out.println("Escolha uma das opções");
         System.out.println("1 - Nova conta conta corrente");
         System.out.println("2 - Consultar saldo");
-        System.out.println("3 - consultar cheque especial");
+        System.out.println("3 - consultar cheque especial disponível");
         System.out.println("4 - Depositar dinheiro");
         System.out.println("5 - Sacar dinheiro");
         System.out.println("6 - Pagar um boleto");
@@ -33,8 +34,6 @@ void main() {
             case 5-> sacar();
             case 6-> pagarBoleto();
             case 7-> verificarUsoChequeEspecial();
-//            case 8-> petmachine.removePet();
-//            case 9-> petmachine.washMachine();
             case 0-> System.exit(0);
             default -> System.out.println("Opção inválida");
         }
@@ -102,7 +101,7 @@ private static void sacar(){
         System.out.println("Valor do Saque: (Zero para retornar).");
         saqueValor = scanner.nextDouble();
         if (saqueValor > 0){
-            System.out.printf("Verificando saldo para realizar o saque de R$ %s \n",saqueValor);
+            System.out.printf("Verificando saldo para realizar o saque de R$ %.2f %n",saqueValor);
             account.withdraw(saqueValor);
             saqueValor = 0;
         }

@@ -20,14 +20,14 @@ public class CheckingAccount {
 
     // pegar Saldos
     public void getBalance() {
-        System.out.printf("Saldo: %s\n", balance);
-        System.out.printf("Limite: %s\n", overdraftLimitAvailable);
-        System.out.printf("Total: %s\n", (balance + overdraftLimitAvailable));
+        System.out.printf("Saldo: R$ %.2f %n", balance);
+        System.out.printf("Limite: R$ %.2f %n", overdraftLimitAvailable);
+        System.out.printf("Total: R$ %.2f %n", (balance + overdraftLimitAvailable));
     }
 
     // Consultar saldo do limite
     public void getOverdraftLimit() {
-        System.out.printf("Limite: %s\n", overdraftLimitAvailable);
+        System.out.printf("Limite: R$ %.2f %n", overdraftLimitAvailable);
     }
 
     // Depositar
@@ -72,18 +72,18 @@ public class CheckingAccount {
     public void withdraw(double amount){
         if (balance >= amount) {
             balance -= amount;
-            System.out.printf("Retirado o valor: %s\n", amount);
+            System.out.printf("Retirado o valor: R$ %.2f %n", amount);
             System.out.println("Valores atualizados");
             getBalance();
         } else if ((balance + overdraftLimitAvailable) >= amount) {
             var retirarDoLimite =amount - balance;
             balance = 0;
             overdraftLimitAvailable -= retirarDoLimite;
-            System.out.printf("Retirado o valor: %s\n", amount);
+            System.out.printf("Retirado o valor: R$ %.2f %n", amount);
             System.out.println("Valores atualizados");
             getBalance();
         } else {
-            System.out.printf("Saldo insuficiente para sacar: %s\n", amount);
+            System.out.printf("Saldo insuficiente para sacar: R$ %.2f %n", amount);
         }
     }
 
@@ -94,20 +94,20 @@ public class CheckingAccount {
             return;
         }
         if (this.balance + this.overdraftLimitAvailable < amount) {
-            System.out.printf("Saldo insuficiente para pagar: %s\n", amount);
+            System.out.printf("Saldo insuficiente para pagar: R$ %.2f %n", amount);
             return;
         }
         // se saldo pessoal for suficiente para pagar o boleto
         if (this.balance >= amount){
             this.balance -= amount;
-            System.out.printf("Pago: %.2f, no boleto cód: %s \n", amount, cod);
+            System.out.printf("Pago: %.2f, no boleto cód: %s %n", amount, cod);
             return;
         }
         // se necessário usar o limite especial
         double retirarLimite = amount - this.balance;
         this.balance = 0;
         this.overdraftLimitAvailable -= retirarLimite;
-        System.out.printf("Pago: %.2f, no boleto cód: %s USANDO LIMITE ESPECIAL \n", amount, cod);
+        System.out.printf("Pago: %.2f, no boleto cód: %s USANDO LIMITE ESPECIAL %n", amount, cod);
     }
 
     // Verificar uso do cheque especial
