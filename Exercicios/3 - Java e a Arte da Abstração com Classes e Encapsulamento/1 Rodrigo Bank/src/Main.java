@@ -146,7 +146,7 @@ private static void pagarBoleto() {
     double valorBoleto = -1;
     do {
         System.out.println("Código do boleto:");
-        String boletoCod = scanner.next();
+        String boletoCod = scanner.nextLine();
         if (boletoCod == null || boletoCod.trim().isEmpty()) {
             System.out.println("⚠️ O código do boleto não pode ficar em branco!");
             continue;
