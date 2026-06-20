@@ -109,4 +109,15 @@ public class CheckingAccount {
         this.overdraftLimitAvailable -= retirarLimite;
         System.out.printf("Pago: %.2f, no boleto cód: %s USANDO LIMITE ESPECIAL \n", amount, cod);
     }
+
+    // Verificar uso do cheque especial
+    public void checkOverdraftUsage(){
+        double amountUsed = this.specialLimit - this.overdraftLimitAvailable;
+
+        if (amountUsed > 0) {
+            System.out.printf("Você está utilizando: R$ %.2f do seu Cheque Especial.%n", amountUsed);
+        } else {
+            System.out.println("Você não está utilizando o seu Cheque Especial.");
+        }
+    }
 }

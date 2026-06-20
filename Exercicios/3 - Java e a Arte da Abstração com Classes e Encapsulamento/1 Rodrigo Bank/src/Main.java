@@ -32,7 +32,7 @@ void main() {
             case 4-> depositar();
             case 5-> sacar();
             case 6-> pagarBoleto();
-//            case 7-> setPetInPetMachine();
+            case 7-> verificarUsoChequeEspecial();
 //            case 8-> petmachine.removePet();
 //            case 9-> petmachine.washMachine();
             case 0-> System.exit(0);
@@ -148,4 +148,12 @@ private static void pagarBoleto() {
 
         account.payBill(boletoCod, valorBoleto);
     } while (valorBoleto != 0);
+}
+
+private static void verificarUsoChequeEspecial() {
+    if (account == null) {
+        System.out.println("⚠️ Favor criar uma conta.");
+        return;
+    }
+    account.checkOverdraftUsage();
 }
