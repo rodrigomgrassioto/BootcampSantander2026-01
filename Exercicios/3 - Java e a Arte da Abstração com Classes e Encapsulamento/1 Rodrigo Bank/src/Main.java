@@ -4,7 +4,7 @@ private final static Scanner scanner = new Scanner(System.in);
 private static CheckingAccount account =null;
 void main() {
     // Possibilidade de ter espeço nos valores digitados pelo usuário
-    scanner.useDelimiter("\\n");
+    //scanner.useDelimiter("\\n");
 
     var option = -1;
 
@@ -24,9 +24,12 @@ void main() {
         System.out.println("7 - Verificar uso cheque especial");
         System.out.println("0 - Sair");
 
-        option = scanner.nextInt();
+        // a linha abaixo gero erro de buffer teclado, por exemplo se digitar espaço ou SHIFT+ENTER.
+//         option = scanner.nextInt();
 
-        switch (option) {
+        int opcao = lerNumeroSeguro("Escolha uma das opções:", "int").intValue();
+
+        switch (opcao) {
             case 1-> newAccount();
             case 2-> getSaldo();
             case 3-> getChequeEspecial();
@@ -41,11 +44,38 @@ void main() {
     }while (true);
 }
 
+//TIP retira espaço, quebra de linha, letras  que o usuário tenha digitado e retorna somente valor
+private static Number lerNumeroSeguro(String mensagem, String tipo) {
+    while (true) {
+        System.out.println(mensagem);
+        String entrada = scanner.nextLine(); // Limpa e engole o buffer inteiro
+
+        if (entrada.trim().isEmpty()) {
+            System.out.println("⚠️ O campo não pode ficar em branco.");
+            continue;
+        }
+
+        try {
+            String textoLimpo = entrada.trim();
+
+            // Usamos .equalsIgnoreCase para aceitar "int", "INT", "dou", "DOU" de forma segura
+            if (tipo.equalsIgnoreCase("int")) {
+                return Integer.parseInt(textoLimpo); // Retorna um número Inteiro
+            } else if (tipo.equalsIgnoreCase("dou")) {
+                return Double.parseDouble(textoLimpo); // Retorna um número Double
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("⚠️ Entrada inválida! Digite apenas números.");
+        }
+    }
+}
+
+
 private static void newAccount() {
     double initialBalance = 0.00;
     do {
-        System.out.println("Digite do depósito inicial.");
-        initialBalance = scanner.nextDouble();
+        initialBalance = lerNumeroSeguro("Digite do depósito inicial.", "dou").doubleValue();
         if (initialBalance <= 0){
             System.out.println("É necessário depósito para abrir uma conta");
         } else {
@@ -77,8 +107,7 @@ public static void depositar(){
     }
     double depositoValor = 0;
     do {
-        System.out.println("Valor do depóstio: (Zero para retornar).");
-        depositoValor = scanner.nextDouble();
+        depositoValor = lerNumeroSeguro("Valor do depóstio: (Zero para retornar).", "dou").doubleValue();
         if (depositoValor < 0){
             System.out.println("Valor do depóstio deve ter valor positivo.");
             depositoValor = 0;
@@ -98,8 +127,9 @@ private static void sacar(){
     }
     double saqueValor = 0;
     do {
-        System.out.println("Valor do Saque: (Zero para retornar).");
-        saqueValor = scanner.nextDouble();
+
+        saqueValor = lerNumeroSeguro("Valor do Saque: (Zero para retornar).", "dou").doubleValue();
+
         if (saqueValor > 0){
             System.out.printf("Verificando saldo para realizar o saque de R$ %.2f %n",saqueValor);
             account.withdraw(saqueValor);
@@ -121,22 +151,8 @@ private static void pagarBoleto() {
             System.out.println("⚠️ O código do boleto não pode ficar em branco!");
             continue;
         }
-        System.out.println("Valor a pagar: (Zero para retornar)");
-        String valorTexto = scanner.next();
 
-        // Validar se o campo está vazio
-        if (valorTexto == null || valorTexto.trim().isEmpty()) {
-            System.out.println("⚠️ O valor do boleto não pode ficar em branco!");
-            continue;
-        }
-
-        // Converter o texto para double
-        try {
-            valorBoleto = Double.parseDouble(valorTexto);
-        } catch (NumberFormatException e) {
-            System.out.println("⚠️ Digite um número válido! Não use letras ou espaços.");
-            continue;
-        }
+        valorBoleto = lerNumeroSeguro("Valor a pagar: (Zero para retornar)", "dou").doubleValue();
 
         if (valorBoleto == 0) return;
 
