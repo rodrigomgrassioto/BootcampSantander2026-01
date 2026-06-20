@@ -86,4 +86,27 @@ public class CheckingAccount {
             System.out.printf("Saldo insuficiente para sacar: %s\n", amount);
         }
     }
+
+    // Pagar boleto
+    public void payBill(String cod, double amount){
+        if (amount <= 0) {
+            System.out.println("⚠️ Informe valor maior que zero.");
+            return;
+        }
+        if (this.balance + this.overdraftLimitAvailable < amount) {
+            System.out.printf("Saldo insuficiente para pagar: %s\n", amount);
+            return;
+        }
+        // se saldo pessoal for suficiente para pagar o boleto
+        if (this.balance >= amount){
+            this.balance -= amount;
+            System.out.printf("Pago: %.2f, no boleto cód: %s \n", amount, cod);
+            return;
+        }
+        // se necessário usar o limite especial
+        double retirarLimite = amount - this.balance;
+        this.balance = 0;
+        this.overdraftLimitAvailable -= retirarLimite;
+        System.out.printf("Pago: %.2f, no boleto cód: %s USANDO LIMITE ESPECIAL \n", amount, cod);
+    }
 }

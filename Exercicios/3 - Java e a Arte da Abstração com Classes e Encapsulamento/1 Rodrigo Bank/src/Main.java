@@ -31,7 +31,7 @@ void main() {
             case 3-> getChequeEspecial();
             case 4-> depositar();
             case 5-> sacar();
-//            case 6-> checkIfHasPetInMachine();
+            case 6-> pagarBoleto();
 //            case 7-> setPetInPetMachine();
 //            case 8-> petmachine.removePet();
 //            case 9-> petmachine.washMachine();
@@ -107,4 +107,45 @@ private static void sacar(){
             saqueValor = 0;
         }
     } while (saqueValor != 0);
+}
+
+private static void pagarBoleto() {
+    if (account == null) {
+        System.out.println("⚠️ Favor criar uma conta.");
+        return;
+    }
+    double valorBoleto = -1;
+    do {
+        System.out.println("Código do boleto:");
+        String boletoCod = scanner.next();
+        if (boletoCod == null || boletoCod.trim().isEmpty()) {
+            System.out.println("⚠️ O código do boleto não pode ficar em branco!");
+            continue;
+        }
+        System.out.println("Valor a pagar: (Zero para retornar)");
+        String valorTexto = scanner.next();
+
+        // Validar se o campo está vazio
+        if (valorTexto == null || valorTexto.trim().isEmpty()) {
+            System.out.println("⚠️ O valor do boleto não pode ficar em branco!");
+            continue;
+        }
+
+        // Converter o texto para double
+        try {
+            valorBoleto = Double.parseDouble(valorTexto);
+        } catch (NumberFormatException e) {
+            System.out.println("⚠️ Digite um número válido! Não use letras ou espaços.");
+            continue;
+        }
+
+        if (valorBoleto == 0) return;
+
+        if (valorBoleto < 0) {
+            System.out.println("⚠️ É preciso informar um valor maior que zero!");
+            continue;
+        }
+
+        account.payBill(boletoCod, valorBoleto);
+    } while (valorBoleto != 0);
 }
