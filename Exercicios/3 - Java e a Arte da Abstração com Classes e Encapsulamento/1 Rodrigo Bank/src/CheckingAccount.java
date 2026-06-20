@@ -20,9 +20,25 @@ public class CheckingAccount {
 
     // pegar Saldos
     public void getBalance() {
-        System.out.printf("Saldo: R$ %.2f %n", balance);
-        System.out.printf("Limite: R$ %.2f %n", overdraftLimitAvailable);
-        System.out.printf("Total: R$ %.2f %n", (balance + overdraftLimitAvailable));
+        System.out.printf("Saldo pessoal: R$ %.2f %n", balance);
+        System.out.printf("Limite total: R$ %.2f %n", specialLimit);
+        if (specialLimit != overdraftLimitAvailable){
+            double taxaUsoLimite = (specialLimit-overdraftLimitAvailable)*0.2;
+            double valorQuitarLimite = (specialLimit-overdraftLimitAvailable) + taxaUsoLimite;
+
+            System.out.printf("=============================================%n");
+            System.out.printf("=========Está usando limite especial=========%n");
+            System.out.printf("==============Segue informações==============%n");
+            System.out.printf("=============================================%n%n");
+
+            System.out.printf("Limite disponível: R$ %.2f %n", overdraftLimitAvailable);
+            System.out.printf("Limite utilizado: R$ %.2f %n", (specialLimit-overdraftLimitAvailable));
+            System.out.printf("Taxa de uso do limite: R$ %.2f %n", taxaUsoLimite);
+            System.out.printf("Valor para quitar o Limite: R$ %.2f %n", valorQuitarLimite);
+        } else {
+            System.out.println("=========Não está usando o limite especial=========");
+        }
+            System.out.printf("%nTotal (Saldo + limite especial): R$ %.2f %n%n", (balance + overdraftLimitAvailable));
     }
 
     // Consultar saldo do limite
@@ -38,7 +54,11 @@ public class CheckingAccount {
 
             // se depósito for menor que o limite usado
             if(amount < limitUsed){
-                double valorParaDepNoLime = amount - (amount * 0.2);
+                // double valorParaDepNoLime = amount - (amount * 0.2);
+                // a linha acima, se o cliente tiver um débito inicial de 76,68 (20% = 15,336 = Total 92,016) e pagar em 2x de 50 reais o saldo
+                // final na conta corrente será de 5,98 e o correto é 7,98 (100 - 92,02)
+
+                double valorParaDepNoLime = amount / 1.20;
                 this.overdraftLimitAvailable += valorParaDepNoLime;
                 System.out.println("Depósito realizado");
                 System.out.println("Valores atualizados");
