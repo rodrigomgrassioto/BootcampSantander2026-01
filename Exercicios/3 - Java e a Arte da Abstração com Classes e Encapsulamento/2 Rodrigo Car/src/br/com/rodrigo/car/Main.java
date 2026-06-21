@@ -3,12 +3,11 @@ import br.com.rodrigo.utils.ConsoleUtils;
 
 void main() {
     Car car = new Car();
-    var option = -1;
 
     do {
-        System.out.println("===============================");
-        System.out.println("====+====Rodrigo Car=========");
-        System.out.printf("===============================%n%n");
+        System.out.println("============================");
+        System.out.println("========Rodrigo Car=========");
+        System.out.printf("============================%n%n");
 
         System.out.println("Bem vindo!");
         System.out.println("Escolha uma das opções");
@@ -17,7 +16,7 @@ void main() {
             System.out.println("10 - Sair");
         }
         else {
-            System.out.println("2 - Desligar");
+            System.out.println("2 - Desligar (Necessário para sair)");
             System.out.println("3 - Acelerar");
             System.out.println("4 - Desacelerar");
             System.out.println("5 - Virar a esquerda");
@@ -52,6 +51,5 @@ void main() {
             }
             default -> System.out.println("❌ Opção inválida");
         }
-
     }while (true);
 }
