@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ConsoleUtils {
     private final static Scanner scanner = new Scanner(System.in);
 
-    private static Number lerNumeroSeguro(String mensagem, String tipo) {
+    public static Number lerNumeroSeguro(String mensagem, String tipo) {
         while (true) {
             System.out.println(mensagem);
             String entrada = scanner.nextLine(); // Limpa e engole o buffer inteiro
