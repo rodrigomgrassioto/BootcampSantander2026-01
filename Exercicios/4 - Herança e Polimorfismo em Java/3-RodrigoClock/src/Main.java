@@ -11,7 +11,7 @@ public class Main {
         brClock.setHour(28);
 
         System.out.println(brClock.getTime());
-//        System.out.println(new USClock().convert(brClock).getTime());
+        System.out.println(new USClock().convert(brClock).getTime());
 
     }
 }
