@@ -1,6 +1,6 @@
 package br.com.rodrigo.clock;
 
-public abstract class Clock {
+public sealed abstract class Clock permits BRClock, USClock {
 
     protected int hour;
     protected int minute;
