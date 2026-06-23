@@ -4,8 +4,6 @@ public non-sealed class BRClock extends Clock {
 
     @Override
     public Clock convert(Clock clock) {
-        this.second = clock.second;
-        this.minute = clock.minute;
         switch (clock){
             case USClock usClock ->  this.hour = (usClock.getPeriodIndicator().equals("PM")) ?
                     usClock.getHour() + 12 :

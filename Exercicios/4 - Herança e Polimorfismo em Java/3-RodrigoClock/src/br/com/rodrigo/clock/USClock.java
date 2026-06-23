@@ -31,6 +31,16 @@ public non-sealed class USClock extends Clock{
 
     @Override
     public Clock convert(Clock clock) {
-        return null;
+
+        switch (clock){
+            case USClock usClock ->  this.hour = (usClock.getPeriodIndicator().equals("PM")) ?
+                    usClock.getHour() + 12 :
+                    usClock.getHour();
+            case BRClock brClock -> {
+                if ()
+                this.hour = brClock.getHour() - 12
+            };
+        }
+        return this;
     }
 }
