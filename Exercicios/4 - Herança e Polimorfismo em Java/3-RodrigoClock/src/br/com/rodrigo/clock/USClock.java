@@ -30,16 +30,20 @@ public non-sealed class USClock extends Clock{
     }
 
     @Override
-    public Clock convert(Clock clock) {
-
+    public Clock convert(final Clock clock) {
+        this.second = clock.getSecond();
+        this.minute = clock.getMinute();
         switch (clock){
-            case USClock usClock ->  this.hour = (usClock.getPeriodIndicator().equals("PM")) ?
-                    usClock.getHour() + 12 :
-                    usClock.getHour();
+            case USClock usClock -> {
+                this.hour = usClock.getHour();
+                this.periodIndicator = usClock.getPeriodIndicator();
+            }
+
             case BRClock brClock -> {
-                if ()
-                this.hour = brClock.getHour() - 12
-            };
+                return this;
+            }
+            // linha abaido dando erro.
+//                    this.hour = this.setHour(brClock.getHour());
         }
         return this;
     }

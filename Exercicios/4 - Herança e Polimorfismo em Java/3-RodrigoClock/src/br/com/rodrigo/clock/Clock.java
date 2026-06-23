@@ -42,11 +42,15 @@ public sealed abstract class Clock permits BRClock, USClock {
         this.second = second;
     }
 
-    // Não é possível fazer assim devido enunciado.
-    public Clock convert(Clock clock){
-        this.second = clock.getSecond();
-        this.minute = clock.getMinute();
-        this.hour = clock.getHour();
-        return this;
+    private String format(int value){
+        if (value <= 9)  return "0"+value;
+        return String.valueOf(value);
     }
+
+    public String getTime(){
+        return format(hour)+":"+format(minute)+":"+format(second);
+    }
+
+    // Deixando a cargo das classes filhas.
+    abstract Clock convert(Clock clock);
 }
