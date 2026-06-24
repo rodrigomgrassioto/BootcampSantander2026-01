@@ -2,12 +2,14 @@ package br.com.rodrigo.ticket;
 
 public class FamilyTicket extends Ticket {
 
-    private int numberMembers;
+    private final int numberMembers;
+
     public FamilyTicket(double value, String movieName, String dubbedOrSubtitled, int numberMembers) {
         super(value, movieName, dubbedOrSubtitled);
         this.numberMembers = numberMembers;
     }
 
+    // criar novo obj a partir da classe Ticket
     public static FamilyTicket fromTicket(Ticket ticket, int numberMembers) {
         return new FamilyTicket(
                 ticket.getValue(),

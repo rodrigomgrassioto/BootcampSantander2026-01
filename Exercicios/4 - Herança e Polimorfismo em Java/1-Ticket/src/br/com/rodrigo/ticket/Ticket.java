@@ -15,10 +15,6 @@ public class Ticket {
         return value;
     }
 
-    public void setValue(Double value) {
-        this.value = value;
-    }
-
     public String getMovieName() {
         return movieName;
     }

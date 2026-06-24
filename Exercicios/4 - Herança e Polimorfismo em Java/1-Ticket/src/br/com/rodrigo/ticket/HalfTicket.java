@@ -6,6 +6,7 @@ public class HalfTicket extends Ticket{
         super(value, movieName, dubbedOrSubtitled);
     }
 
+    // criar novo obj a partir da classe Ticket
     public static HalfTicket fromTicket(Ticket ticket) {
         return new HalfTicket(
                 ticket.getValue(),
