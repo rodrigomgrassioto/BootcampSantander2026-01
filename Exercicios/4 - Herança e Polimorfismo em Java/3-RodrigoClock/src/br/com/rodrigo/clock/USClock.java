@@ -46,4 +46,9 @@ public non-sealed class USClock extends Clock{
         }
         return this;
     }
+
+    @Override
+    public String getTime(){
+        return super.getTime() + " " + this.periodIndicator;
+    }
 }
