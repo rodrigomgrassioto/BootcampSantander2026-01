@@ -27,6 +27,7 @@ public class Seller extends User{
     }
 
     public void consultSales(){
+        System.out.printf("%n%nℹ️ CONSULTA DE VENDAS!%n");
         System.out.println("ℹ️ Pedido 1 Pedro Grassioto");
         System.out.println("ℹ️ Pedido 2 Maria Rita");
         System.out.println("ℹ️ Pedido 3 Carla Thais");
