@@ -24,6 +24,12 @@ Os projetos estão organizados por módulos evolutivos, acompanhando o cronogram
     *   Aplicação dos pilares de Programação Orientada a Objetos (POO).
     *   Desenvolvimento de projetos individuais e isolados com múltiplas classes corporativas.
     *   **Projeto em Destaque:** `3 Máquina de banhos em pet` - Sistema modelado para gerenciamento de estados, regras de negócio de limpeza e ocupação de animais.
+	
+*	**[Exercício 4: Herança e Polimorfismo Avançado em Java](.Exercicios/4%20-%20Heran%C3%A7a%20e%20Polimorfismo%20em%20Java/)**  
+     *   Aprofundamento na criação de arquiteturas extensíveis, reutilização de código e polimorfismo dinâmico.
+     *   Ticket (Cinema Ticket System):** Hierarquia de precificação dinâmica para bilheteria de cinema, aplicando o padrão criacional *Static Factory Method* para reaproveitamento limpo de objetos sem duplicação de strings (Princípio DRY).
+     *   RodrigoUsersControl (User Access Control System):** Sistema de controle de acessos corporativos (RBAC). Uso de classes abstratas e injeção de estado em cascata para blindagem rígida de permissões administrativas (`isAdmin`), associado a validações defensivas de segurança para alteração de credenciais.
+     *   RodrigoClock (World Clock Architecture):** Sistema de sincronização e regionalização de fusos horários (24h vs. 12h AM/PM) utilizando recursos de última geração como *Sealed Classes* (Java 17) para herança restrita e *Pattern Matching para estruturas Switch* (Java 21).
 
 ---
 
