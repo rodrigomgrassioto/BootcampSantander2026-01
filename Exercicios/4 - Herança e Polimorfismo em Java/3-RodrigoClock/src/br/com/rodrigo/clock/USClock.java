@@ -20,13 +20,11 @@ public non-sealed class USClock extends Clock{
         if (hour >= 13 && hour <= 23){
             setAfterMidday();
             this.hour = hour - 12;
-            return;
         } else if (hour >= 24) {
             this.hour = 0;
         } else {
             this.hour = hour;
         }
-        this.hour = hour;
     }
 
     @Override
