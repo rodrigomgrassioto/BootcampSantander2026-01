@@ -11,8 +11,8 @@ public sealed abstract class Clock permits BRClock, USClock {
     }
 
     public void setHour(int hour) {
-        if (hour > 24){
-            this.hour = 24;
+        if (hour >= 24){
+            this.hour = 0;
             return;
         }
         this.hour = hour;
@@ -24,7 +24,7 @@ public sealed abstract class Clock permits BRClock, USClock {
 
     public void setMinute(int minute) {
         if (minute >= 60){
-            this.minute = 60;
+            this.minute = 0;
             return;
         }
         this.minute = minute;
@@ -36,7 +36,7 @@ public sealed abstract class Clock permits BRClock, USClock {
 
     public void setSecond(int second) {
         if (second >= 60){
-            this.second = 60;
+            this.second = 0;
             return;
         }
         this.second = second;
