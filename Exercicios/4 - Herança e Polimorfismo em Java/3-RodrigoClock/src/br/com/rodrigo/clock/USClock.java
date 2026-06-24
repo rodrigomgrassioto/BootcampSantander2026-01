@@ -40,7 +40,6 @@ public non-sealed class USClock extends Clock{
             }
 
             case BRClock brClock -> {
-                // linha abaido dando erro.
                 this.setHour(brClock.getHour());
             }
         }
