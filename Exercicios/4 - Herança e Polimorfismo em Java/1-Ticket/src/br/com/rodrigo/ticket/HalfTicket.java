@@ -14,6 +14,15 @@ public class HalfTicket extends Ticket{
 //        return this;
 //    }
 
+    public static HalfTicket fromTicket(Ticket ticket) {
+        return new HalfTicket(
+                ticket.getValue(),
+                ticket.getMovieName(),
+                ticket.getDubbedOrSubtitled()
+        );
+    }
+
+
     @Override
     public double getRealPrice() {
         return value/2;
@@ -21,6 +30,6 @@ public class HalfTicket extends Ticket{
 
     @Override
     public void infos(){
-        System.out.printf("Título: %s, Valor inteiro: %s, Meia: %s, Tipo: %s %n", this.getMovieName(), this.priceBase, this.getValue(), this.dubbedOrSubtitled);
+        System.out.printf("Título: %s, Valor inteiro: %s, Meia: %s, Tipo: %s %n", this.getMovieName(), this.getValue(), this.getRealPrice(), this.dubbedOrSubtitled);
     }
 }
