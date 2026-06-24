@@ -32,6 +32,7 @@ public class Ticket {
     }
 
     public void infos(){
-        System.out.printf("Título: %s, Valor inteiro: %s, Tipo: %s %n", this.getMovieName(), this.getValue(), this.dubbedOrSubtitled);
+        System.out.printf("Título: %s, Valor inteiro: %s, Tipo: %s %n",
+                this.getMovieName(), this.getValue(), this.dubbedOrSubtitled);
     }
 }

@@ -14,9 +14,6 @@ public  class Main{
         HalfTicket meiaEntrada = new HalfTicket(precoBase,titulo, dubOuLeg);
         FamilyTicket entradaFamilia = new FamilyTicket(precoBase,titulo, dubOuLeg, membrosFamilia);
 
-//        System.out.println(ingressoGeral.getMovieName());
-//        System.out.println(meiaEntrada.getMovieName());
-//        System.out.println(entradaFamilia.getMovieName());
         ingressoGeral.infos();
         meiaEntrada.infos();
         entradaFamilia.infos();
@@ -34,7 +31,5 @@ public  class Main{
         ingressoGeral2.infos();
         meiaEntrada2.infos();
         entradaFamilia2.infos();
-
-
     }
 }
