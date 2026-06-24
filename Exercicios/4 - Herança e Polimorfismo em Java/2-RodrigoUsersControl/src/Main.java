@@ -9,7 +9,15 @@ void main() {
     gerente.changePersonalData("Rodrigo Medeiros Grassioto", "falecom@devrodrigo.com", "555");
     // Atualizando dados
     gerente.changePersonalData("Rodrigo Medeiros Grassioto", "falecom@devrodrigo.com", "123");
-    // teste com senha errada
+    // login com e-mail antigo
+    gerente.login("tst@devrodrigo.com", "123");
+    // login com senha errada
+    gerente.login("falecom@devrodrigo.com", "461");
+    // login
+    gerente.login("falecom@devrodrigo.com", "123");
+    // logoff
+    gerente.logoff();
+    // trocar senha com senha errada
     gerente.changePassword("568", "987");
     // trocando senha
     gerente.changePassword("123", "987");
