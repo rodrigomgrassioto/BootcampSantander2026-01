@@ -13,50 +13,21 @@ public abstract class User {
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
-
-        // modo resumido com sobrecarga
-//        this(name, email, password, false);
-    }
-
-    // sobrecarga para quando quiser definir o isAdmin
-//    public User(String name, String email, String password, boolean isAdmin) {
-//        this.name = name;
-//        this.email = email;
-//        this.password = password;
-//        this.isAdmin = isAdmin;
-//    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
 
     public void setLogged(boolean status){
         logged = status;
@@ -76,25 +47,6 @@ public abstract class User {
         setLogged(false);
         System.out.println("❗ Até logo!");
     }
-
-    // Abandonado para atender os requisitos técnicos solicitado.
-    //Altera apenas Nome e Email
-//    public void changePersonalData(String name, String email) {
-//        // Chama a função que sobrecarrega esta (a de baixo), passando null na senha
-//        changePersonalData(name, email, null);
-//    }
-//
-//    // Altera nome, email e senha se informado.
-//    public void changePersonalData(String name, String email, String password) {
-//        this.name = name;
-//        this.email = email;
-//
-//        if (password != null && !password.isBlank()) {
-//            this.password = password;
-//            System.out.println("✅ Senha alterada com sucesso!");
-//        }
-//        System.out.println("✅ Dados Alterados!");
-//    }
 
     // trocar apenas nome e email
     public void changePersonalData(String name, String email, String password) {
