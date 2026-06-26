@@ -33,21 +33,18 @@ void main(){
 }
 private void square(){
     double comp = lerNumeroSeguro("Comprimento do quadrado: ", "dou").doubleValue();
+    // sem utilizar a interface
 //    double result = new Square(comp).getArea();
 //    System.out.printf("A área do quadrado é: %,.2f %n", result);
     geometricShape = new Square(comp);
 }
 
-
-
 public void rectangle(){
     double comp = lerNumeroSeguro("Comprimento do retângulo: ", "dou").doubleValue();
     double larg = lerNumeroSeguro("Largura do retângulo: ", "dou").doubleValue();
-//    double result = new Rectangle(comp, larg).getArea();
-//    System.out.printf("A área do retângulo é: %,.2f %n", result);
 
     // usando record
-//    geometricShape = new Rectangle(comp, larg);
+    // geometricShape = new Rectangle(comp, larg);
 
     //usando LAMBIDA (similar a arrow function, função anônima no JS)
     geometricShape = () -> comp * larg;
@@ -55,7 +52,5 @@ public void rectangle(){
 
 public void circle(){
     double raio = lerNumeroSeguro("Rádio do cirgulo: ", "dou").doubleValue();
-//    double result = new Circle(raio).getArea();
-//    System.out.printf("A área do círculo é: %,.2f %n", result);
     geometricShape = new Circle(raio);
 }
