@@ -45,7 +45,12 @@ public void rectangle(){
     double larg = lerNumeroSeguro("Largura do retângulo: ", "dou").doubleValue();
 //    double result = new Rectangle(comp, larg).getArea();
 //    System.out.printf("A área do retângulo é: %,.2f %n", result);
-    geometricShape = new Rectangle(comp, larg);
+
+    // usando record
+//    geometricShape = new Rectangle(comp, larg);
+
+    //usando LAMBIDA (similar a arrow function, função anônima no JS)
+    geometricShape = () -> comp * larg;
 }
 
 public void circle(){
