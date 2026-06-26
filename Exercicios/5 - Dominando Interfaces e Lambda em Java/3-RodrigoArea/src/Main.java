@@ -1,13 +1,50 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import com.devrodrigo.area.Circle;
+import com.devrodrigo.area.Rectangle;
+import com.devrodrigo.area.Square;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
-    }
+import static com.devrodrigo.utils.ConsoleUtils.lerNumeroSeguro;
+
+void main() {
+
+    do {
+        System.out.println("==++++++==========================");
+        System.out.println("========Rodrigo Área Calc=========");
+        System.out.printf ("========++++++====================%n%n");
+
+        System.out.println("Bem vindo!");
+        System.out.println("Escolha o tipo Geométrico.");
+        System.out.println("1 - Quadrado");
+        System.out.println("2 - Retângulo");
+        System.out.println("3 - Círculo");
+        System.out.println("0 - Sair");
+
+        int opcao = lerNumeroSeguro("Escolha uma das opções:", "int").intValue();
+
+        switch (opcao) {
+            case 1-> square();
+            case 2-> rectangle();
+            case 3-> circle();
+            case 0-> System.exit(0);
+            default -> System.out.println("❌ Opção inválida");
+        }
+    }while (true);
+}
+
+public void square(){
+    double comp = lerNumeroSeguro("Comprimento do quadrado: ", "dou").doubleValue();
+    double result = new Square(comp).getArea();
+    System.out.printf("A área do quadrado é: %,.2f %n", result);
+}
+
+public void rectangle(){
+    double comp = lerNumeroSeguro("Comprimento do retângulo: ", "dou").doubleValue();
+    double larg = lerNumeroSeguro("Largura do retângulo: ", "dou").doubleValue();
+    double result = new Rectangle(comp, larg).getArea();
+    System.out.printf("A área do retângulo é: %,.2f %n", result);
+}
+
+public void circle(){
+    double raio = lerNumeroSeguro("Rádio do cirgulo: ", "dou").doubleValue();
+    double result = new Circle(raio).getArea();
+    System.out.printf("A área do círculo é: %,.2f %n", result);
 }
