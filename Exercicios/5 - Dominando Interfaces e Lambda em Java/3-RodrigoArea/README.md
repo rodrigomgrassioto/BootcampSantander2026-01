@@ -70,6 +70,49 @@ Durante o desenvolvimento deste motor de cálculo, foquei em aplicar padrões de
 
 ---
 
+## 💻 Exemplos de Código e Implementação
+
+Veja abaixo a diferença prática entre a abordagem estruturada imutável (Records) e a abordagem funcional flexível (Lambdas) aplicadas neste motor de cálculo:
+
+### 1. Modelagem com Java Records (Imutabilidade de Dados)
+O uso do `record` permitiu definir a entidade geométrica de forma concisa, garantindo que as propriedades sejam `final` por padrão, com getters e construtores gerados automaticamente pelo compilador do Java 26:
+
+```java
+package com.devrodrigo.area;
+
+// Dados 100% imutáveis e sem código verboso (boilerplate)
+public record Rectangle(double base, double height) implements GeometricShape {
+
+    @Override
+    public double getArea() {
+        return base * height;
+    }
+}
+```
+
+### 2. Injeção Dinâmica com Expressões Lambda (`->`)
+Para fórmulas matemáticas diretas ou de última hora, o sistema elimina a necessidade de criar um novo arquivo `.java`. Abaixo, implementamos a fórmula do Triângulo "no ar" utilizando o paradigma funcional, de forma análoga às *Arrow Functions* do JavaScript:
+
+```java
+private void triangle() {
+    double base = lerNumeroSeguro("Base do triângulo: ", "dou").doubleValue();
+    double height = lerNumeroSeguro("Altura do triângulo: ", "dou").doubleValue();
+
+    // Uma Interface Funcional sendo instanciada dinamicamente via Lambda
+    geometricShape = () -> (base * height) / 2;
+}
+```
+
+### 3. Consumo Unificado via Polimorfismo
+Graças ao contrato estabelecido pela interface `GeometricShape`, o fluxo principal do programa invoca a execução correta da fórmula de forma transparente, centralizando a exibição do resultado:
+
+```java
+// Independentemente se foi criado via Record ou Lambda, o contrato é o mesmo
+System.out.printf("A área é: %,.2f %n%n", geometricShape.getArea());
+```
+
+---
+
 ## 🤝 Conecte-se Comigo
 Estou em constante evolução no ecossistema backend focado em Java e Engenharia de Software. Fique à vontade para explorar os outros sub-módulos do meu repositório ou entrar em contato!
 
