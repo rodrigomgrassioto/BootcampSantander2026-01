@@ -1,11 +1,12 @@
 import com.devrodrigo.area.Circle;
+import com.devrodrigo.area.GeometricShape;
 import com.devrodrigo.area.Rectangle;
 import com.devrodrigo.area.Square;
-
 import static com.devrodrigo.utils.ConsoleUtils.lerNumeroSeguro;
 
-void main() {
+GeometricShape geometricShape;
 
+void main(){
     do {
         System.out.println("==++++++==========================");
         System.out.println("========Rodrigo Área Calc=========");
@@ -27,24 +28,29 @@ void main() {
             case 0-> System.exit(0);
             default -> System.out.println("❌ Opção inválida");
         }
+        System.out.printf("A área é: %,.2f %n%n", geometricShape.getArea());
     }while (true);
 }
-
-public void square(){
+private void square(){
     double comp = lerNumeroSeguro("Comprimento do quadrado: ", "dou").doubleValue();
-    double result = new Square(comp).getArea();
-    System.out.printf("A área do quadrado é: %,.2f %n", result);
+//    double result = new Square(comp).getArea();
+//    System.out.printf("A área do quadrado é: %,.2f %n", result);
+    geometricShape = new Square(comp);
 }
+
+
 
 public void rectangle(){
     double comp = lerNumeroSeguro("Comprimento do retângulo: ", "dou").doubleValue();
     double larg = lerNumeroSeguro("Largura do retângulo: ", "dou").doubleValue();
-    double result = new Rectangle(comp, larg).getArea();
-    System.out.printf("A área do retângulo é: %,.2f %n", result);
+//    double result = new Rectangle(comp, larg).getArea();
+//    System.out.printf("A área do retângulo é: %,.2f %n", result);
+    geometricShape = new Rectangle(comp, larg);
 }
 
 public void circle(){
     double raio = lerNumeroSeguro("Rádio do cirgulo: ", "dou").doubleValue();
-    double result = new Circle(raio).getArea();
-    System.out.printf("A área do círculo é: %,.2f %n", result);
+//    double result = new Circle(raio).getArea();
+//    System.out.printf("A área do círculo é: %,.2f %n", result);
+    geometricShape = new Circle(raio);
 }
