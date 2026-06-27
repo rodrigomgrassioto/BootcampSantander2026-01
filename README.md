@@ -31,6 +31,12 @@ Os projetos estão organizados por módulos evolutivos, acompanhando o cronogram
      *   RodrigoUsersControl (User Access Control System):** Sistema de controle de acessos corporativos (RBAC). Uso de classes abstratas e injeção de estado em cascata para blindagem rígida de permissões administrativas (`isAdmin`), associado a validações defensivas de segurança para alteração de credenciais.
      *   RodrigoClock (World Clock Architecture):** Sistema de sincronização e regionalização de fusos horários (24h vs. 12h AM/PM) utilizando recursos de última geração como *Sealed Classes* (Java 17) para herança restrita e *Pattern Matching para estruturas Switch* (Java 21).
 
+*   **[Exercício 5: Interfaces e Programação Funcional com Expressões Lambda](./Exercicios/5%20-%20Dominando%20Interfaces%20e%20Lambda%20em%20Java/)**
+    *   Domínio de arquiteturas desacopladas através de contratos abstratos (Interfaces Funcionais) e transição para o paradigma funcional com o ecossistema moderno do Java.
+    *   **RodrigoAreaCalc (Dynamic Shape Calculator):** Centralização de exibição polimórfica e otimização de código boilerplate através de dados portadores imutáveis com **Java Records**.
+    *   **RodrigoMess (Omni-channel Messaging Engine):** Motor de marketing digital baseado no padrão de projeto arquitetural **Strategy**. Aplicação de injeção dinâmica de canais (SMS, WhatsApp, Facebook) combinada com funções anônimas (Expressões Lambda) de forma *stateless* e isolada.
+    *   **RodrigoTaxCalc (Dynamic Tax Engine):** Sistema de simulação fiscal que processa diferentes alíquotas regulamentadas utilizando **Pattern Matching com `instanceof` Moderno** para introspecção segura de tipos em loops polimórficos de alta concorrência.
+
 ---
 
 ## 🚀 Tecnologias e Metodologias Aplicadas
