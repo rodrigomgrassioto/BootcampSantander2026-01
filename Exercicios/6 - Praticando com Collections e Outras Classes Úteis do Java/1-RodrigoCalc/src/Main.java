@@ -35,13 +35,17 @@ void main(){
             System.out.println("Opção inválida.");
         }
     }
-    var selectedOperation = Operation.values();
+    var selectedOperation = Operation.values()[option - 1];
 
     System.out.print("Digite os números separados por virgula (ex: 1,2,3,4,5): ");
     var numbers = scanner.next();
     var numberArray = Arrays.stream(numbers.split(","))
             .mapToLong(Long::parseLong)
             .toArray();
+
+    var result = selectedOperation.getOperationCallback().exec(numberArray);
+    System.out.printf("Resultado: %s%n", result);
+
 
 
 //        switch (option) {
