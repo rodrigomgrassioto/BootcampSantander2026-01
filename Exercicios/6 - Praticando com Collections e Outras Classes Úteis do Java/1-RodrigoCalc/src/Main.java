@@ -31,5 +31,5 @@ void main(){
 
     var result = selectedOperation.getOperationCallback().exec(numberArray);
     var operationShow = numbers.replaceAll(",", selectedOperation.getSignal());
-    System.out.printf("Resultado de %s= %s%n", operationShow,  result);
+    System.out.printf("Resultado de %s = %s%n", operationShow,  result);
 }
