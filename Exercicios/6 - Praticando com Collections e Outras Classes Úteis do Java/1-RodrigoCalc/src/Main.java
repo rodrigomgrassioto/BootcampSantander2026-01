@@ -4,33 +4,36 @@ Scanner scanner = new Scanner(System.in);
 void main(){
 
 //    do {
-        System.out.println("==============================");
-        System.out.println("========Rodrigo Calc==========");
-        System.out.printf ("==============================%n%n");
+    System.out.println("==============================");
+    System.out.println("========Rodrigo Calc==========");
+    System.out.printf ("==============================%n%n");
 
-        System.out.println("Bem vindo!");
+    System.out.println("Bem vindo!");
 
 
-        System.out.println("1 - Somar");
-        System.out.println("2 - Subtrair");
+    System.out.println("1 - Somar");
+    System.out.println("2 - Subtrair");
 //        System.out.println("3 - Saúde e bem estar");
 //        System.out.println("4 - Vestuário");
 //        System.out.println("5 - Cultura");
 //        System.out.println("6 - Comparar todas categorias");
 
-        System.out.println("0 - Sair");
+    System.out.println("0 - Sair");
 
-        int option = -1;
+    int option = -1;
 
-        while (option < 1 || option > 2){
-            option = lerNumeroSeguro("Escolha uma das opções:", "int").intValue();
-            if (option == 0) System.exit(0);
-            if (option != 1 && option != 2){
-                System.out.println("Opção inválida.");
-            }
+    while (option < 1 || option > 2){
+        option = lerNumeroSeguro("Escolha uma das opções:", "int").intValue();
+        if (option == 0) System.exit(0);
+        if (option != 1 && option != 2){
+            System.out.println("Opção inválida.");
         }
-
-        var numbers = scanner.next();
+    }
+    System.out.print("Digite os números separados por virgula (ex: 1,2,3,4,5): ");
+    var numbers = scanner.next();
+    var numberArray = Arrays.stream(numbers.split(","))
+            .mapToLong(Long::parseLong)
+            .toArray();
 
 
 //        switch (option) {
