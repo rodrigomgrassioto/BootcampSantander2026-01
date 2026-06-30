@@ -3,7 +3,6 @@ import java.util.stream.LongStream;
 
 public enum Operation {
     SUM(n -> LongStream.of(n).reduce(0, Long::sum), " + ") ,
-//    SUBTRACTION(n -> LongStream.of(n).reduce(0, (n1, n2) -> n1-n2), "-"); - Por iniciar em zero, se calc 10,2,3 o resultado era -15 ao invés de 5.
     SUBTRACTION(n -> LongStream.of(n).reduce((n1, n2) -> n1-n2).orElse(0), " - ");
 
     private final Calc operationCallback;
