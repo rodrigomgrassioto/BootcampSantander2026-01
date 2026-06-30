@@ -44,7 +44,8 @@ void main(){
             .toArray();
 
     var result = selectedOperation.getOperationCallback().exec(numberArray);
-    System.out.printf("Resultado: %s%n", result);
+    var operationShow = numbers.replaceAll(",", selectedOperation.getSignal());
+    System.out.printf("Resultado de %s= %s%n", operationShow,  result);
 
 
 
