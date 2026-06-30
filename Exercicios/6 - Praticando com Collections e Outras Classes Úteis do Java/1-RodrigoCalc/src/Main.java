@@ -24,7 +24,8 @@ void main(){
     var selectedOperation = Operation.values()[option - 1];
 
     System.out.print("Digite os números separados por virgula (ex: 1,2,3,4,5): ");
-    var numbers = scanner.next();
+    // aceita usuário digitar espaço, mas remove este espaço antes de gerar o array.
+    var numbers = scanner.nextLine().replace(" ", "");
     var numberArray = Arrays.stream(numbers.split(","))
             .mapToLong(Long::parseLong)
             .toArray();
