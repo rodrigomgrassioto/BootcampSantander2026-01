@@ -1,3 +1,5 @@
+import com.devrodrigo.calc.Operation;
+
 import java.util.Scanner;
 import static com.devrodrigo.utils.ConsoleUtils.lerNumeroSeguro;
 Scanner scanner = new Scanner(System.in);
@@ -22,6 +24,10 @@ void main(){
 
     int option = -1;
 
+    System.out.printf("Oration retorna: %s%n", Operation.values());
+    System.out.printf("Oration retorna 0: %s%n", Operation.values()[0]);
+    System.out.printf("Oration retorna 1: %s%n", Operation.values()[1]);
+
     while (option < 1 || option > 2){
         option = lerNumeroSeguro("Escolha uma das opções:", "int").intValue();
         if (option == 0) System.exit(0);
@@ -29,6 +35,8 @@ void main(){
             System.out.println("Opção inválida.");
         }
     }
+    var selectedOperation = Operation.values();
+
     System.out.print("Digite os números separados por virgula (ex: 1,2,3,4,5): ");
     var numbers = scanner.next();
     var numberArray = Arrays.stream(numbers.split(","))
