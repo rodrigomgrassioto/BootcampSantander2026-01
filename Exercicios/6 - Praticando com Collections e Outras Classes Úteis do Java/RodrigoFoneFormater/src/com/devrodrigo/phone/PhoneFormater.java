@@ -5,13 +5,13 @@ public final class PhoneFormater {
         throw new UnsupportedOperationException("Classe utilitária não pode ser instanciada.");
     }
 
-    public static PhoneResponse processarTelefone(String numeroBruto) {
-        if (numeroBruto == null || numeroBruto.isBlank()) {
+    public static PhoneResponse processarTelefone(String unformattedNumber) {
+        if (unformattedNumber == null || unformattedNumber.isBlank()) {
             return new PhoneResponse("", "Desconhecido", false, "Número não pode ser vazio.");
         }
 
         // Retirar todos caractéres que não sejam números
-        String apenasNumeros = numeroBruto.replaceAll("\\D", "");
+        String apenasNumeros = unformattedNumber.replaceAll("\\D", "");
 
         // Celular
         if (apenasNumeros.length() == 11) {
@@ -27,7 +27,7 @@ public final class PhoneFormater {
 
         // Se não tiver 10 ou 11 digitos, Falha de Validação
         return new PhoneResponse(
-                numeroBruto,
+                unformattedNumber,
                 "Inválido",
                 false,
                 "Falha: O telefone (+ DDD) precisa ter 10 ou 11 números (Fixo/Celular):"

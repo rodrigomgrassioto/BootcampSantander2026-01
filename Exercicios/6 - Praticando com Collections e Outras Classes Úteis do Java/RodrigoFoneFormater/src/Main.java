@@ -6,8 +6,14 @@ void main() {
     System.out.println("========Rodrigo Calc==========");
     System.out.printf ("==============================%n%n");
 
-    System.out.print("Digite os números separados por virgula (ex: 1,2,3,4,5): ");
-    // aceita usuário digitar espaço, mas remove este espaço antes de gerar o array.
-    var numbers = scanner.nextLine().replace(" ", "");
+    while (true){
+        System.out.print("DDD + telefone (ZERO para sair): ");
+        var number = scanner.nextLine();
+        if (number.equals("0")) System.exit(0);
+    }
+
+
+
+
 
 }
