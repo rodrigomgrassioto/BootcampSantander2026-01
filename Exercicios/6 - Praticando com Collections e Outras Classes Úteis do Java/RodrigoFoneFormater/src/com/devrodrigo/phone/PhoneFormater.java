@@ -5,7 +5,7 @@ public final class PhoneFormater {
         throw new UnsupportedOperationException("Classe utilitária não pode ser instanciada.");
     }
 
-    public static PhoneResponse processarTelefone(String unformattedNumber) {
+    public static PhoneResponse formatPhone(String unformattedNumber) {
         if (unformattedNumber == null || unformattedNumber.isBlank()) {
             return new PhoneResponse("", "Desconhecido", false, "Número não pode ser vazio.");
         }

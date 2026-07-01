@@ -1,3 +1,6 @@
+import com.devrodrigo.phone.PhoneFormater;
+import com.devrodrigo.phone.PhoneResponse;
+
 Scanner scanner = new Scanner(System.in);
 
 void main() {
@@ -10,6 +13,10 @@ void main() {
         System.out.print("DDD + telefone (ZERO para sair): ");
         var number = scanner.nextLine();
         if (number.equals("0")) System.exit(0);
+
+        PhoneResponse phoneResponse = PhoneFormater.formatPhone(number);
+
+        System.out.print(phoneResponse+"%n");
     }
 
 
