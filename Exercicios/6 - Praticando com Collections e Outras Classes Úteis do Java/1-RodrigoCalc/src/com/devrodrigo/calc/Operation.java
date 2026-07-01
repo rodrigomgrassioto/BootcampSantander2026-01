@@ -5,11 +5,11 @@ public enum Operation {
     SUM(n -> LongStream.of(n).reduce(0, Long::sum), " + ") ,
     SUBTRACTION(n -> LongStream.of(n).reduce((n1, n2) -> n1-n2).orElse(0), " - ");
 
-    private final Calc operationCallback;
+    private final Calc operationCallbackTest;
     private final String signal;
 
     Operation(final Calc operationCallback, String signal) {
-        this.operationCallback = operationCallback;
+        this.operationCallbackTest = operationCallback;
         this.signal = signal;
     }
 
@@ -17,7 +17,7 @@ public enum Operation {
         return signal;
     }
 
-    public Calc getOperationCallback() {
-        return operationCallback;
+    public Calc getOperationCallbackTest() {
+        return operationCallbackTest;
     }
 }

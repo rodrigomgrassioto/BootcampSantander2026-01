@@ -30,7 +30,7 @@ void main(){
             .mapToLong(Long::parseLong)
             .toArray();
 
-    var result = selectedOperation.getOperationCallback().exec(numberArray);
+    var result = selectedOperation.getOperationCallbackTest().exec(numberArray);
     var operationShow = numbers.replaceAll(",", selectedOperation.getSignal());
     System.out.printf("Resultado de %s = %s%n", operationShow,  result);
 }
