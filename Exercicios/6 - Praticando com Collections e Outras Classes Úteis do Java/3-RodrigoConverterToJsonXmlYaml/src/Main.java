@@ -6,13 +6,24 @@ void main(){
     System.out.printf ("===================================%n%n");
 
     System.out.println("Bem vindo!");
-    System.out.println("1 - Somar");
-    System.out.println("2 - Subtrair");
-    System.out.println("0 - Sair");
+    var numberFields = -1;
+    while (numberFields <= 0){
+        System.out.print("Quantidade de campos: (Zero para sair) ");
+        numberFields = scanner.nextInt();
+        if (numberFields == 0) System.exit(1);
+    }
+    System.out.print("Digite a chave;valor do campo: (Zero para sair) ");
+    var keyValue  = scanner.nextLine();
+    if (keyValue.equals("0")) System.exit(1);
 
     int option = -1;
-    while (option < 1 || option > 2){
-        option = lerNumeroSeguro("Escolha uma das opções:", "int").intValue();
+    while (option <= 0 || option > 4){
+        System.out.println("==== Escolha: ===");
+        System.out.println("1 -> Inteiro");
+        System.out.println("2 -> Decima");
+        System.out.println("3 -> Data(dd/mm/aaaa)");
+        System.out.println("4 -> Verdadeiro ou falso");
+        option = lerNumeroSeguro("Valor escolhido:", "int").intValue();
         if (option == 0) System.exit(0);
         if (option != 1 && option != 2){
             System.out.println("Opção inválida.");
