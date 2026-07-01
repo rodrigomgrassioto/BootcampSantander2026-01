@@ -17,7 +17,7 @@ void main(){
     System.out.println("-> texto (ou 1)");
     System.out.println("-> inteiro (ou 2)");
     System.out.println("-> decimal (ou 3)");
-    System.out.println("-> booleano (ou 4)");
+    System.out.println("-> booleano(Verdadeiro ou Falso) (ou 4)");
     System.out.println("-> data (ou 5) [Padrão: dd/mm/aaaa]");
     System.out.println("-> data_hora (ou 6) [Padrão: dd/mm/aaaa hh:mm:ss]");
     System.out.println("------------------------------------------------");

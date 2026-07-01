@@ -20,19 +20,19 @@ public final class TypeConverter {
 
         // Aceitamos tanto o número do menu quanto as palavras descritas no enunciado!
         return switch (t) {
-            case "2", "inteiro", "numeros inteiros" ->
+            case "int" ->
                     Integer.parseInt(valorBruto.trim());
 
-            case "3", "ponto_flutuante", "decimal", "double", "números com pontos flutuantes" ->
+            case "dec" ->
                     Double.parseDouble(valorBruto.trim());
 
-            case "4", "booleano", "boleanos", "boolean", "bool" ->
+            case "bool" ->
                     Boolean.parseBoolean(valorBruto.trim());
 
-            case "5", "data", "datas", "date" ->
+            case "date" ->
                     LocalDate.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-            case "6", "data e hora", "data_hora", "datetime" ->
+            case "datetime" ->
                     LocalDateTime.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 
             // Caso seja "1", "texto" ou qualquer outra string, mantém como texto puro
@@ -54,15 +54,16 @@ public final class TypeConverter {
 //        };
     }
 
+
     public static String normalizarTipo(String tipo) {
         String t = tipo.toLowerCase().trim();
         return switch (t) {
-            case "2", "inteiro", "numeros inteiros" -> "inteiro";
-            case "3", "ponto_flutuante", "decimal", "double", "números com pontos flutuantes" -> "decimal";
-            case "4", "booleano", "boleanos", "boolean", "bool" -> "booleano";
-            case "5", "data", "datas", "date" -> "data";
-            case "6", "data e hora", "data_hora", "datetime" -> "data_hora";
-            default -> "texto";
+            case "2", "inteiro", "numeros inteiros", "números inteiros", "int" -> "int";
+            case "3", "ponto_flutuante", "decimal", "double", "numeros com pontos flutuantes", "números com pontos flutuantes", "dec" -> "dec";
+            case "4", "booleano", "boleanos", "boolean", "bool" -> "bool";
+            case "5", "data", "datas", "date" -> "date";
+            case "6", "data e hora", "data_hora", "datetime" -> "datetime";
+            default -> "str";
         };
     }
 }
