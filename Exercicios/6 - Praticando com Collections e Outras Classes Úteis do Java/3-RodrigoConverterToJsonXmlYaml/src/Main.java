@@ -1,4 +1,5 @@
 import com.devrodrigo.generator.DateField;
+import com.devrodrigo.generator.FormatExporter;
 import com.devrodrigo.generator.TypeConverter;
 
 import static com.devrodrigo.utils.ConsoleUtils.lerNumeroSeguro;
@@ -64,26 +65,40 @@ void main(){
         }
 
     }
-    System.out.println("Para encerrar o programa digite '0' (ZERO)");
-    System.out.print("Digite a chave e valor(separado por ';'): ");
-    var keyValue  = scanner.nextLine();
-    if (keyValue.equals("0")) System.exit(1);
 
-    int option = -1;
-    while (option <= 0 || option > 4){
-        System.out.println("Para encerrar o programa digite '0' (ZERO)");
-        System.out.println("==== Escolha: ===");
-        System.out.println("1 -> Inteiro");
-        System.out.println("2 -> Decima");
-        System.out.println("3 -> Data(dd/mm/aaaa)");
-        System.out.println("4 -> Verdadeiro ou falso");
-        option = lerNumeroSeguro("Valor escolhido:", "int").intValue();
-        if (option == 0) System.exit(0);
-        else System.out.printf("digitou: %s", option);
+    System.out.println("\n================================================");
+    System.out.println("📊 PROCESSAMENTO CONCLUÍDO - EXPORTANDO FORMATOS");
+    System.out.println("================================================");
+
+    System.out.println("\n🚀 [JSON]");
+    System.out.println(FormatExporter.toJson(objetoCustomizado));
+
+    System.out.println("\n🚀 [XML]");
+    System.out.println(FormatExporter.toXml(objetoCustomizado));
+
+    System.out.println("\n🚀 [YAML]");
+    System.out.println(FormatExporter.toYaml(objetoCustomizado));
+
+//    System.out.println("Para encerrar o programa digite '0' (ZERO)");
+//    System.out.print("Digite a chave e valor(separado por ';'): ");
+//    var keyValue  = scanner.nextLine();
+//    if (keyValue.equals("0")) System.exit(1);
+//
+//    int option = -1;
+//    while (option <= 0 || option > 4){
+//        System.out.println("Para encerrar o programa digite '0' (ZERO)");
+//        System.out.println("==== Escolha: ===");
+//        System.out.println("1 -> Inteiro");
+//        System.out.println("2 -> Decima");
+//        System.out.println("3 -> Data(dd/mm/aaaa)");
+//        System.out.println("4 -> Verdadeiro ou falso");
+//        option = lerNumeroSeguro("Valor escolhido:", "int").intValue();
+//        if (option == 0) System.exit(0);
+//        else System.out.printf("digitou: %s", option);
 //        if (option != 1 && option != 2){
 //            System.out.println("Opção inválida.");
 //        }
-    }
+//    }
 //    var selectedOperation = Operation.values()[option - 1];
 //
 //    System.out.print("Digite os números separados por virgula (ex: 1,2,3,4,5): ");
