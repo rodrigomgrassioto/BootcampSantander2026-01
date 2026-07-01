@@ -9,14 +9,16 @@ void main() {
     System.out.println("========Rodrigo Calc==========");
     System.out.printf ("==============================%n%n");
 
+    String number = "";
     while (true){
-        System.out.print("DDD + telefone (ZERO para sair): ");
-        var number = scanner.nextLine();
+        System.out.printf("DDD + telefone (ZERO para sair): %s", number);
+        number = scanner.nextLine();
         if (number.equals("0")) System.exit(0);
 
         PhoneResponse phoneResponse = PhoneFormater.formatPhone(number);
+        if (!phoneResponse.success()) number = phoneResponse.formattedNumber();
 
-        System.out.print(phoneResponse+"%n");
+        System.out.printf("%s%n", phoneResponse);
     }
 
 
