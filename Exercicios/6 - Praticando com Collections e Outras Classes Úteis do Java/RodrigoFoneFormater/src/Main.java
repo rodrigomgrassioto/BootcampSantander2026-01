@@ -1,13 +1,13 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+Scanner scanner = new Scanner(System.in);
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
-    }
+void main() {
+
+    System.out.println("==============================");
+    System.out.println("========Rodrigo Calc==========");
+    System.out.printf ("==============================%n%n");
+
+    System.out.print("Digite os números separados por virgula (ex: 1,2,3,4,5): ");
+    // aceita usuário digitar espaço, mas remove este espaço antes de gerar o array.
+    var numbers = scanner.nextLine().replace(" ", "");
+
 }
