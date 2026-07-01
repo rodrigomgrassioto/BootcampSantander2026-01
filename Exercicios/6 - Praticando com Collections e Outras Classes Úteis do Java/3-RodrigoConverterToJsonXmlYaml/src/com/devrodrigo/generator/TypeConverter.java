@@ -18,17 +18,18 @@ public final class TypeConverter {
 
         String codigo = codigoTipo.trim();
 
-        return switch (codigo) {
-            case "2" -> Integer.parseInt(valorBruto.trim());
-
-            case "3" -> Double.parseDouble(valorBruto.trim());
-
-            case "4" -> LocalDate.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
-            case "5" -> Boolean.parseBoolean(valorBruto.trim());
-
-            // Se digitar 1 ou qualquer outra coisa, vira texto por padrão
-            default -> valorBruto;
-        };
+        // não atende os requisitos
+//        return switch (codigo) {
+//            case "2" -> Integer.parseInt(valorBruto.trim());
+//
+//            case "3" -> Double.parseDouble(valorBruto.trim());
+//
+//            case "4" -> LocalDate.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//
+//            case "5" -> Boolean.parseBoolean(valorBruto.trim());
+//
+//            // Se digitar 1 ou qualquer outra coisa, vira texto por padrão
+//            default -> valorBruto;
+//        };
     }
 }
