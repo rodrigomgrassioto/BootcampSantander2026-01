@@ -26,9 +26,15 @@ public final class TypeConverter {
             case "dec" ->
                     Double.parseDouble(valorBruto.trim());
 
-            case "bool" ->
-                    Boolean.parseBoolean(valorBruto.trim());
+            case "bool" -> {
+//                Boolean.parseBoolean();
+                String valor = valorBruto.toLowerCase().trim();
+                if (valor.equals("true") || valor.equals("verdade") || valor.equals("sim") || valor.equals("v") || valor.equals("1")) {
+                    yield true;
+                }
+                yield false;
 
+            }
             case "date" ->
                     LocalDate.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
