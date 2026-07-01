@@ -76,7 +76,7 @@ Este submódulo foi construído de forma nativa no IntelliJ IDEA, dependendo pur
 
 1. **Atualize o seu repositório local:**
    ```bash
-   git clone https://github.com/tree/main/Exercicios/6%20-%20Praticando%20com%20Collections%20e%20Outras%20Classes%20Úteis%20do%20Java/2-RodrigoPhoneFormater
+   git clone https://github.com/rodrigomgrassioto/BootcampSantander2026-01/tree/main/Exercicios/6%20-%20Praticando%20com%20Collections%20e%20Outras%20Classes%20%C3%9Ateis%20do%20Java/2-RodrigoFoneFormater
    ```
 2. **Abra o Projeto:**
     * No IntelliJ, vá em **File > Open** e selecione a pasta deste subprojeto.
