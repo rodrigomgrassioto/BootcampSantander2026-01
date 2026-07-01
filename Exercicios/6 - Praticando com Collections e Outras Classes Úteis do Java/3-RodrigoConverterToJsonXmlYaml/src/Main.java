@@ -1,6 +1,11 @@
+import com.devrodrigo.generator.DateField;
+import com.devrodrigo.generator.TypeConverter;
+
 import static com.devrodrigo.utils.ConsoleUtils.lerNumeroSeguro;
 Scanner scanner = new Scanner(System.in);
 void main(){
+    Map<String, DateField> objetoCustomizado = new LinkedHashMap<>();
+
     System.out.println("===================================");
     System.out.println("========Rodrigo converter==========");
     System.out.printf ("===================================%n%n");
@@ -19,11 +24,45 @@ void main(){
     System.out.println("Exemplo do Enunciado: nome;Lucas;Texto;");
     System.out.println("Digite '0' ou 'sair' a qualquer momento para encerrar e exportar.\n");
 
-    int numberFields = -1;
-    while (numberFields <= 0){
-        System.out.println("Para encerrar o programa digite '0' (ZERO)");
-        numberFields = lerNumeroSeguro("Quantidade de campos: ", "int").intValue();
-        if (numberFields == 0) System.exit(1);
+    while (true){
+        System.out.print("Digite o campo (NOME;VALOR;TIPO;): ");
+        String entrada = scanner.nextLine().trim();
+
+        // Cláusula de escape unificada
+        if (entrada.equals("0") || entrada.equalsIgnoreCase("sair")) {
+            if (objetoCustomizado.isEmpty()) {
+                System.out.println("Nenhum campo foi informado. Encerrando o sistema...");
+                System.exit(0);
+            }
+            break; // Quebra o loop e vai para a geração dos arquivos
+        }
+
+        // separa campo digitado
+        String[] partes = entrada.split(";");
+
+        if (partes.length < 3) {
+            System.out.println("❌ Entrada inválida! Deve ter 3 campos. Padrão: nome;valor;tipo;\n");
+            continue;
+        }
+        String nomeCampo = partes[0].trim();
+        String valorBruto = partes[1].trim();
+        String tipoCampo  = partes[2].toLowerCase().trim();
+
+        try {
+            // Converte o valor de texto para o tipo Java correto (Integer, Double, etc.)
+            Object valorProcessado = TypeConverter.converter(valorBruto, tipoCampo);
+
+            // Normaliza o nome do tipo ("1" ou "inteiro" vira "inteiro" padronizado)
+            String tipoNormalizado = TypeConverter.normalizarTipo(tipoCampo);
+
+            // 2. ALIMENTA A GAVETA: Coloca a chave e o Record dentro do mapa que criamos lá em cima
+            objetoCustomizado.put(nomeCampo, new DateField(valorProcessado, tipoNormalizado));
+            System.out.printf("✅ Campo '%s' adicionado com sucesso!%n%n", nomeCampo);
+
+        } catch (Exception e) {
+            System.out.printf("❌ Erro de conversão: O valor '%s' não corresponde ao tipo '%s'. Tente novamente.%n%n", valorBruto, tipoCampo);
+        }
+
     }
     System.out.println("Para encerrar o programa digite '0' (ZERO)");
     System.out.print("Digite a chave e valor(separado por ';'): ");
