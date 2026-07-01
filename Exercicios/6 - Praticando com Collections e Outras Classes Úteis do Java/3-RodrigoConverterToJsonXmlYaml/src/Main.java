@@ -1,12 +1,9 @@
-import com.devrodrigo.calc.Operation;
-
-import java.util.Scanner;
 import static com.devrodrigo.utils.ConsoleUtils.lerNumeroSeguro;
 Scanner scanner = new Scanner(System.in);
 void main(){
-    System.out.println("==============================");
-    System.out.println("========Rodrigo Calc==========");
-    System.out.printf ("==============================%n%n");
+    System.out.println("===================================");
+    System.out.println("========Rodrigo converter==========");
+    System.out.printf ("===================================%n%n");
 
     System.out.println("Bem vindo!");
     System.out.println("1 - Somar");

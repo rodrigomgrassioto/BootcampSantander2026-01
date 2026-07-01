@@ -1,4 +1,4 @@
 package com.devrodrigo.generator;
 
-public record DateField() {
+public record DateField(Object valorConvertido, String tipoOriginal) {
 }
