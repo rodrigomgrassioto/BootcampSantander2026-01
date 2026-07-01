@@ -6,6 +6,19 @@ void main(){
     System.out.printf ("===================================%n%n");
 
     System.out.println("Bem vindo!");
+
+    System.out.printf("%n--- GUIA DE TIPOS ACEITOS ---%n");
+    System.out.println("-> texto (ou 1)");
+    System.out.println("-> inteiro (ou 2)");
+    System.out.println("-> decimal (ou 3)");
+    System.out.println("-> booleano (ou 4)");
+    System.out.println("-> data (ou 5) [Padrão: dd/mm/aaaa]");
+    System.out.println("-> data_hora (ou 6) [Padrão: dd/mm/aaaa hh:mm:ss]");
+    System.out.println("------------------------------------------------");
+    System.out.println("Padrão de entrada: NOME_CAMPO;VALOR;TIPO;");
+    System.out.println("Exemplo do Enunciado: nome;Lucas;Texto;");
+    System.out.println("Digite '0' ou 'sair' a qualquer momento para encerrar e exportar.\n");
+
     int numberFields = -1;
     while (numberFields <= 0){
         System.out.println("Para encerrar o programa digite '0' (ZERO)");
