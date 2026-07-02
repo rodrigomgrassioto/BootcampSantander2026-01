@@ -50,11 +50,12 @@ void main(){
         String tipoCampo  = partes[2].toLowerCase().trim();
 
         try {
-            // Converte o valor de texto para o tipo Java correto (Integer, Double, etc.)
-            Object valorProcessado = TypeConverter.converter(valorBruto, tipoCampo);
-
             // Normaliza o nome do tipo ("1" ou "inteiro" vira "inteiro" padronizado)
             String tipoNormalizado = TypeConverter.normalizarTipo(tipoCampo);
+            System.out.printf("norm: %s%n", tipoNormalizado);
+
+            // Converte o valor de texto para o tipo Java correto (Integer, Double, etc.)
+            Object valorProcessado = TypeConverter.converter(valorBruto, tipoNormalizado);
 
             // 2. ALIMENTA A GAVETA: Coloca a chave e o Record dentro do mapa que criamos lá em cima
             objetoCustomizado.put(nomeCampo, new DateField(valorProcessado, tipoNormalizado));
