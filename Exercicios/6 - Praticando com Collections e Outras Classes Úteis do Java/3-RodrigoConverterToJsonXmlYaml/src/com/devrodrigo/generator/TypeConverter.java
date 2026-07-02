@@ -35,11 +35,35 @@ public final class TypeConverter {
                 yield false;
 
             }
-            case "date" ->
-                    LocalDate.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            case "date" -> {
+                System.out.println("entrou em date");
+//                LocalDate.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                // mantem apenas números
+                String apenasNumeros = valorBruto.replaceAll("\\D", "");
 
-            case "datetime" ->
-                    LocalDateTime.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+                if (apenasNumeros.length() != 8) {
+                    throw new IllegalArgumentException("❌ Data inválida. Precisa conter exatamente 8 dígitos numéricos.");
+                }
+
+                String dataFormatada = apenasNumeros.replaceAll("(\\d{2})(\\d{2})(\\d{4})", "$1/$2/$3");
+                yield LocalDate.parse(dataFormatada, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            }
+            case "datetime" -> {
+                System.out.println("entrou em date_time");
+//                LocalDateTime.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+                String onlyNumbers = valorBruto.replaceAll("\\D", "");
+
+                // Se o usuário não digitou os segundos, adiciona "00" no final
+                if (onlyNumbers.length() == 12)  onlyNumbers = onlyNumbers + "00"; // "230319821433" vira "23031982143300"
+                if (onlyNumbers.length() != 14) throw new IllegalArgumentException("❌ Data e hora inválidas. Precisa conter 12 ou 14 dígitos numéricos.");
+
+                String dataHoraFormatada = onlyNumbers.replaceAll(
+                        "(\\d{2})(\\d{2})(\\d{4})(\\d{2})(\\d{2})(\\d{2})",
+                        "$1/$2/$3 $4:$5:$6"
+                );
+
+                yield LocalDateTime.parse(dataHoraFormatada, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+            }
 
             // Caso seja "1", "texto" ou qualquer outra string, mantém como texto puro
             default -> valorBruto;
