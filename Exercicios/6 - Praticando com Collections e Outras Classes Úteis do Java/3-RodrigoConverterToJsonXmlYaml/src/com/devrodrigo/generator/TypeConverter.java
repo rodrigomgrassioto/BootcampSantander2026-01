@@ -17,7 +17,6 @@ public final class TypeConverter {
         }
 
         String t = tipo.toLowerCase().trim();
-
         // Aceitamos tanto o número do menu quanto as palavras descritas no enunciado!
         return switch (t) {
             case "int" ->
@@ -27,7 +26,6 @@ public final class TypeConverter {
                     Double.parseDouble(valorBruto.trim());
 
             case "bool" -> {
-//                Boolean.parseBoolean();
                 String valor = valorBruto.toLowerCase().trim();
                 if (valor.equals("true") || valor.equals("verdade") || valor.equals("sim") || valor.equals("v") || valor.equals("1")) {
                     yield true;
@@ -36,9 +34,7 @@ public final class TypeConverter {
 
             }
             case "date" -> {
-                System.out.println("entrou em date");
-//                LocalDate.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                // mantem apenas números
+                // mantém apenas números
                 String apenasNumeros = valorBruto.replaceAll("\\D", "");
 
                 if (apenasNumeros.length() != 8) {
@@ -49,8 +45,6 @@ public final class TypeConverter {
                 yield LocalDate.parse(dataFormatada, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             }
             case "datetime" -> {
-                System.out.println("entrou em date_time");
-//                LocalDateTime.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
                 String onlyNumbers = valorBruto.replaceAll("\\D", "");
 
                 // Se o usuário não digitou os segundos, adiciona "00" no final
@@ -68,20 +62,6 @@ public final class TypeConverter {
             // Caso seja "1", "texto" ou qualquer outra string, mantém como texto puro
             default -> valorBruto;
         };
-
-        // não atende os requisitos
-//        return switch (codigo) {
-//            case "2" -> Integer.parseInt(valorBruto.trim());
-//
-//            case "3" -> Double.parseDouble(valorBruto.trim());
-//
-//            case "4" -> LocalDate.parse(valorBruto.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-//
-//            case "5" -> Boolean.parseBoolean(valorBruto.trim());
-//
-//            // Se digitar 1 ou qualquer outra coisa, vira texto por padrão
-//            default -> valorBruto;
-//        };
     }
 
 
