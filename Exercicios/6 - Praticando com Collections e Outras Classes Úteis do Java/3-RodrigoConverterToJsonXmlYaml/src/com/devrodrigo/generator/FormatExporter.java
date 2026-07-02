@@ -17,7 +17,7 @@ public final class FormatExporter {
                     String tipo = entry.getValue().tipoOriginal();
 
                     // Adicionar aspas "
-                    if (tipo.equals("texto") || tipo.equals("data") || tipo.equals("data_hora")) {
+                    if (tipo.equals("str") || tipo.equals("date") || tipo.equals("datetime")) {
                         return "  \"%s\": \"%s\"".formatted(chave, valor);
                     }
                     // valores sem aspas "
@@ -51,7 +51,7 @@ public final class FormatExporter {
                     String tipo = entry.getValue().tipoOriginal();
 
                     // O padrão YAML aceita strings sem aspas, mas aspas duplas garantem segurança para datas/textos com espaços
-                    if (tipo.equals("texto") || tipo.equals("data") || tipo.equals("data_hora")) {
+                    if (tipo.equals("str") || tipo.equals("date") || tipo.equals("datetime")) {
                         return "%s: \"%s\"".formatted(chave, valor);
                     }
                     return "%s: %s".formatted(chave, valor);
