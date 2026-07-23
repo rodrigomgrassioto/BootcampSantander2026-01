@@ -10,5 +10,10 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":annotation"));
+    compileOnly(project(":annotation"));
+    implementation(project(":processor"));
+    annotationProcessor(project(":processor"));
+
 
 }
