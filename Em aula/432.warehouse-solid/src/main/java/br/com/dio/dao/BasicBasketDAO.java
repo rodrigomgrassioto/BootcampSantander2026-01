@@ -1,7 +1,9 @@
 package br.com.dio.dao;
 
 import br.com.dio.BasicBasket;
+import br.com.dio.model.StockInfo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -18,5 +20,9 @@ public class BasicBasketDAO {
         // ordenar lista por preço
         stock.sort(Comparator.comparing(BasicBasket::price));
         return stock.subList(0, amount);
+    }
+
+    public StockInfo getInfo(){
+        return new StockInfo(stock.size(), stock.stream().filter(b -> b.validate().isBefore(LocalDate.now())).count());
     }
 }

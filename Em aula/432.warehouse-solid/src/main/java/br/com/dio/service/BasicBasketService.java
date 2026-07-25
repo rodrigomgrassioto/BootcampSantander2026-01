@@ -3,6 +3,7 @@ package br.com.dio.service;
 import br.com.dio.BasicBasket;
 import br.com.dio.Box;
 import br.com.dio.dao.BasicBasketDAO;
+import br.com.dio.model.StockInfo;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -34,5 +35,9 @@ public class BasicBasketService {
         moneyService.add(total);
 //        return toSold;
         return total;
+    }
+
+    public StockInfo getInfo(){
+        return dao.getInfo();
     }
 }

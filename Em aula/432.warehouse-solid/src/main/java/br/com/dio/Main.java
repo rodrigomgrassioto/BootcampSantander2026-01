@@ -56,9 +56,8 @@ public class Main {
     }
 
     private static void checkStock(){
-        int amount = stock.size();
-        long outOfDate = stock.stream().filter(b -> b.validate().isBefore(LocalDate.now())).count();
-        System.out.printf("Existem %s cestas em estoque, das quais %s estão fora do prazo de validade \n", amount, outOfDate);
+        var stockInfo = basicBasketService.getInfo();
+        System.out.printf("Existem %s cestas em estoque, das quais %s estão fora do prazo de validade \n", stockInfo.total(), stockInfo.outOfDate());
     }
 
     private static void checkMoney(){
