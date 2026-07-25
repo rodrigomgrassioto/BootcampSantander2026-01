@@ -1,5 +1,10 @@
 package br.com.dio;
 
+import br.com.dio.dao.BasicBasketDAO;
+import br.com.dio.dao.MoneyDAO;
+import br.com.dio.service.BasicBasketService;
+import br.com.dio.service.MoneyService;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -11,6 +16,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
+
+    private static MoneyService moneyService = new MoneyService(new MoneyDAO());
+    private static BasicBasketService basicBasketService = new BasicBasketService(new BasicBasketDAO(), moneyService);
 
     private final static Scanner scanner = new Scanner(System.in);
 
@@ -43,11 +51,8 @@ public class Main {
     private static void soldItems() {
         System.out.println("Quantas cestar serão vendidas");
         var amount = scanner.nextInt();
-        stock.sort(Comparator.comparing(BasicBasket::price));
-        var toSold = stock.subList(0, amount);
-        var value = toSold.stream().map(BasicBasket::price).reduce(BigDecimal.ZERO, BigDecimal::add);
-        money = money.add(value);
-        System.out.printf("O valor da venda é de %s \n", value);
+        var total = basicBasketService.sold(amount);
+        System.out.printf("O valor da venda é de %s \n", total);
     }
 
     private static void checkStock(){
@@ -78,12 +83,8 @@ public class Main {
         var month = Integer.parseInt(validate.split("/")[1]);
         var year = Integer.parseInt(validate.split("/")[2]);
         var box = new Box(amount, LocalDate.of(year, month, day), price);
-        var unitPrice = box.price().divide(new BigDecimal(box.amount()), RoundingMode.CEILING);
-        var finalPrice = unitPrice.add(unitPrice.multiply(new BigDecimal("0.20")));
-        var baskets = Stream.generate(() -> new BasicBasket(box.validate(), finalPrice))
-                .limit(box.amount())
-                .toList();
-        stock.addAll(baskets);
+
+        var baskets = basicBasketService.receive(box);
         System.out.printf("Foram adicionadas %s cestas ao estoque\n", baskets.size());
     }
 
