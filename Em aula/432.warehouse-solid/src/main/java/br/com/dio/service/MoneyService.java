@@ -18,4 +18,8 @@ public class MoneyService {
     public BigDecimal getMoney(){
         return dao.getMoney();
     }
+
+    public void minusAdd(BigDecimal value){
+        dao.add(value.multiply(new BigDecimal("-1")));
+    }
 }

@@ -42,6 +42,9 @@ public class BasicBasketService {
     }
 
     public List<BasicBasket> removeOutOfDate(){
-        return dao.removeOutOfDate();
+        var outOfDate = dao.removeOutOfDate();
+        var total = outOfDate.stream().map(BasicBasket::price).reduce(BigDecimal.ZERO, BigDecimal::add);
+        moneyService.minusAdd(total);
+        return outOfDate;
     }
 }
