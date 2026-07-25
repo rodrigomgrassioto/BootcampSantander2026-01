@@ -14,4 +14,8 @@ public class MoneyService {
     public BigDecimal add(final BigDecimal value){
         return dao.add(value);
     }
+
+    public BigDecimal getMoney(){
+        return dao.getMoney();
+    }
 }

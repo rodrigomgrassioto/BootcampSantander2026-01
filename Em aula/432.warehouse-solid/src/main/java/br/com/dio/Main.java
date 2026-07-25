@@ -23,7 +23,6 @@ public class Main {
     private final static Scanner scanner = new Scanner(System.in);
 
     private static List<BasicBasket> stock = new ArrayList<>();
-    private static BigDecimal money = BigDecimal.ZERO;
 
     public static void main(String[] args) {
         System.out.println("Bem vindo ao sistema de armazém");
@@ -61,7 +60,7 @@ public class Main {
     }
 
     private static void checkMoney(){
-        System.out.printf("O caixa no momento é de %s\n", money);
+        System.out.printf("O caixa no momento é de %s\n", moneyService.getMoney() );
     }
 
     private static void removeItemsOutOfDate(){

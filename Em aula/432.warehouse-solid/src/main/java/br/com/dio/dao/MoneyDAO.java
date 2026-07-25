@@ -9,4 +9,8 @@ public class MoneyDAO {
         this.money = this.money.add(value);
         return this.money;
     }
+
+    public BigDecimal getMoney() {
+        return money;
+    }
 }
