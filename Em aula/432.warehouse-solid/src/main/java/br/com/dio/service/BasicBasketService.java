@@ -40,4 +40,8 @@ public class BasicBasketService {
     public StockInfo getInfo(){
         return dao.getInfo();
     }
+
+    public List<BasicBasket> removeOutOfDate(){
+        return dao.removeOutOfDate();
+    }
 }

@@ -22,8 +22,6 @@ public class Main {
 
     private final static Scanner scanner = new Scanner(System.in);
 
-    private static List<BasicBasket> stock = new ArrayList<>();
-
     public static void main(String[] args) {
         System.out.println("Bem vindo ao sistema de armazém");
         System.out.println("Selecione a opção desejada");
@@ -43,6 +41,7 @@ public class Main {
                 case 4 -> soldItems();
                 case 5 -> removeItemsOutOfDate();
                 case 6 -> System.exit(0);
+                default -> System.out.println("Opção inválida");
             }
         }
     }
@@ -64,9 +63,8 @@ public class Main {
     }
 
     private static void removeItemsOutOfDate(){
-        var outOfDate = stock.stream().filter(b -> b.validate().isBefore(LocalDate.now())).toList();
+        var outOfDate = basicBasketService.removeOutOfDate();
         var lost = outOfDate.stream().map(BasicBasket::price).reduce(BigDecimal.ZERO, BigDecimal::add);
-        stock = stock.stream().filter(b -> b.validate().isBefore(LocalDate.now())).collect(Collectors.toList());
         System.out.printf("Foram descartadas do estoque %s cestas vencidas, o prejuizo foi de %s \n", outOfDate.size(), lost);
     }
 
@@ -76,14 +74,18 @@ public class Main {
         System.out.println("Informe a quantidade de cestas da entrega");
         var amount = scanner.nextLong();
         System.out.println("Informe a data de vencimento");
-        var validate = scanner.next();
-        var day = Integer.parseInt(validate.split("/")[0]);
-        var month = Integer.parseInt(validate.split("/")[1]);
-        var year = Integer.parseInt(validate.split("/")[2]);
-        var box = new Box(amount, LocalDate.of(year, month, day), price);
+        var stringValidate = scanner.next();
+        var validade = toLocalDate(stringValidate);
+        var box = new Box(amount, validade, price);
 
         var baskets = basicBasketService.receive(box);
         System.out.printf("Foram adicionadas %s cestas ao estoque\n", baskets.size());
+    }
+
+    private static LocalDate toLocalDate(final String date){
+        var splitDate = Stream.of(date.split("/"))
+                .mapToInt(Integer::parseInt).toArray();
+        return LocalDate.of(splitDate[2], splitDate[1], splitDate[0]);
     }
 
 }
