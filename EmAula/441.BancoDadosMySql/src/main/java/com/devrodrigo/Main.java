@@ -1,16 +1,12 @@
 package com.devrodrigo;
 
-import com.devrodrigo.persistence.ConnectUtil;
-
-import java.io.Console;
-import java.sql.SQLException;
+import org.flywaydb.core.Flyway;
 
 public class Main {
-    public static void main(String[] args){
-        try(var connection = ConnectUtil.getConnection()){
-            System.out.println("Conectou");
-        } catch (SQLException ex){
-            ex.printStackTrace();
-        }
+    static void main(){
+        final var flyway = Flyway.configure()
+                .dataSource("jdbc:mysql://localhost:3306/bcsantander_441aula","root","")
+                .load();
+        flyway.migrate();
     }
 }
