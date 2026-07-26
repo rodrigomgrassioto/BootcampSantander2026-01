@@ -78,8 +78,31 @@ public class EmployeeDAO {
     }
 
     public EmployeeEntity findById(final long id){
-        return  null;
-    }
+        final var entity = new EmployeeEntity();
+
+        // Pesquisa pessoal, usando o PreparedStatement para melhorar a concatenação
+        final String sql = "SELECT * FROM employees WHERE ID = ?";
+        try(
+                var connection = ConnectUtil.getConnection();
+
+                var statement = connection.prepareStatement(sql)
+        ) {
+            // setar variável
+            statement.setLong(1, id);
+            statement.executeQuery();
+            final var resultSet = statement.getResultSet();
+            if (resultSet.next()){
+                entity.setId(resultSet.getLong("id"));
+                entity.setName(resultSet.getString("name"));
+                entity.setSalary(resultSet.getBigDecimal("salary"));
+                final var birthdayInstant = resultSet.getTimestamp("birthday").toInstant();
+                entity.setBirthday(OffsetDateTime.ofInstant(birthdayInstant, UTC));
+            }
+//            System.out.printf("Foram afetados %s, no banco de dados", statement.getUpdateCount());
+        } catch (SQLException exception){
+            exception.printStackTrace();
+        }
+        return entity;    }
 
     private String formatOffsetDateTime(final OffsetDateTime dateTime){
         final var utcDateTime = dateTime.withOffsetSameInstant(UTC);
