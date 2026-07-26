@@ -15,12 +15,13 @@ public class Main {
 //        flyway.migrate();
 
         final var employeeDAO = new EmployeeDAO();
-        final var employee = new EmployeeEntity();
-        employee.setName("Kiki");
-        employee.setSalary(new BigDecimal("0.00"));
-        employee.setBirthday(OffsetDateTime.now().minusYears(6));
-        System.out.print(employee);
-        employeeDAO.insert(employee);
-        System.out.print(employee);
+//        final var employee = new EmployeeEntity();
+//        employee.setName("Kiki");
+//        employee.setSalary(new BigDecimal("0.00"));
+//        employee.setBirthday(OffsetDateTime.now().minusYears(6));
+//        System.out.print(employee);
+//        employeeDAO.insert(employee);
+//        System.out.print(employee);
+        employeeDAO.findAll().forEach(System.out::println);
     }
 }
