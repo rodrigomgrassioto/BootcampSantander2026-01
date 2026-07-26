@@ -12,6 +12,6 @@ import static lombok.AccessLevel.PRIVATE;
 public class ConnectUtil {
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("JDBC:mysql://localhost:3306/","root","");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/bcsantander_441aula","root","");
     }
 }
