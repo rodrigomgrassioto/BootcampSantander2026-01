@@ -34,19 +34,57 @@ public class EmployeeDAO {
             statement.executeUpdate();
 //            System.out.printf("Foram afetados %s, no banco de dados", statement.getUpdateCount());
 
-            if (statement instanceof StatementImpl impl)
-                entity.setId(impl.getLastInsertID());
+            // pegar o id assim, só funciona no MYSQL se migrar para outro banco, vai quebrar
+//            if (statement instanceof StatementImpl impl)
+//                entity.setId(impl.getLastInsertID());
+
+            // Recupera o ID gerado pelo auto_increment de forma elegante e segura
+            try (var generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    entity.setId(generatedKeys.getLong(1));
+                }
+            }
 
         } catch (SQLException exception){
             exception.printStackTrace();
         }
-
     }
-    public void update(final EmployeeEntity entity){
 
+    public void update(final EmployeeEntity entity){
+        // Pesquisa pessoal, usando o PreparedStatement para melhorar a concatenação
+        final String sql = "UPDATE employees set name = ?, salary = ?, birthday = ? WHERE id = ?";
+        try(
+                var connection = ConnectUtil.getConnection();
+//            var statement = connection.createStatement()
+                var statement = connection.prepareStatement(sql)
+        ) {
+            // inserindo as variáveis
+            statement.setString(1, entity.getName());
+            statement.setBigDecimal(2, entity.getSalary());
+            statement.setObject(3, entity.getBirthday());
+            statement.setLong(4, entity.getId());
+
+            statement.executeUpdate();
+//            System.out.printf("Foram afetados %s, no banco de dados", statement.getUpdateCount());
+
+        } catch (SQLException exception){
+            exception.printStackTrace();
+        }
     }
     public void delete(final long id){
-
+        // Pesquisa pessoal, usando o PreparedStatement para melhorar a concatenação
+        final String sql = "DELETE FROM employees WHERE id = ?";
+        try(
+                var connection = ConnectUtil.getConnection();
+//            var statement = connection.createStatement()
+                var statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
+        ) {
+            // inserindo as variáveis
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (SQLException exception){
+            exception.printStackTrace();
+        }
     }
 
     public List<EmployeeEntity> findAll (){
