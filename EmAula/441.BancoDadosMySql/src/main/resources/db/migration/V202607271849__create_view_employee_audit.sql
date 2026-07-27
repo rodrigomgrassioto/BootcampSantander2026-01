@@ -1,0 +1,1 @@
+create view view_employee_audit as select * from employees_audit order by created_at;
