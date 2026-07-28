@@ -1,5 +1,6 @@
 package com.devrodrigo.persistence;
 
+import com.devrodrigo.persistence.entity.ContactEntity;
 import com.devrodrigo.persistence.entity.EmployeeEntity;
 
 import java.sql.SQLException;
@@ -156,7 +157,9 @@ public class EmployeeDAO {
         final var entity = new EmployeeEntity();
 
         // Pesquisa pessoal, usando o PreparedStatement para melhorar a concatenação
-        final String sql = "SELECT * FROM employees WHERE ID = ?";
+        final String sql = "SELECT e.id as employee_id, " +
+                "e.name, e.salary, e.birthday, c.id as contact_id, " +
+                "c.description, c.type FROM employees e LEFT JOIN contacts c ON c.employee_id = e.id WHERE e.id = ?";
         try(
                 var connection = ConnectUtil.getConnection();
 
@@ -167,11 +170,15 @@ public class EmployeeDAO {
             statement.executeQuery();
             final var resultSet = statement.getResultSet();
             if (resultSet.next()){
-                entity.setId(resultSet.getLong("id"));
+                entity.setId(resultSet.getLong("employee_id"));
                 entity.setName(resultSet.getString("name"));
                 entity.setSalary(resultSet.getBigDecimal("salary"));
                 final var birthdayInstant = resultSet.getTimestamp("birthday").toInstant();
                 entity.setBirthday(OffsetDateTime.ofInstant(birthdayInstant, UTC));
+                entity.setContact(new ContactEntity());
+                entity.getContact().setId(resultSet.getLong("contact_id"));
+                entity.getContact().setDescription(resultSet.getString("description"));
+                entity.getContact().setType(resultSet.getString("type"));
             }
 //            System.out.printf("Foram afetados %s, no banco de dados", statement.getUpdateCount());
         } catch (SQLException exception){
