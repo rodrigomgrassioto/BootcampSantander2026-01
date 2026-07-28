@@ -2,7 +2,7 @@ package com.devrodrigo;
 
 import com.devrodrigo.persistence.ContactDAO;
 import com.devrodrigo.persistence.EmployeeDAO;
-import com.devrodrigo.persistence.entity.ContactEntity;
+import com.devrodrigo.persistence.ModuleDAO;
 import com.devrodrigo.persistence.entity.EmployeeEntity;
 import net.datafaker.Faker;
 import org.flywaydb.core.Flyway;
@@ -26,6 +26,7 @@ public class Main {
 
         final var employeeDAO = new EmployeeDAO();
         final var contactDAO = new ContactDAO();
+        final var moduleDAO = new ModuleDAO();
         final var employee = new EmployeeEntity();
 //        employee.setId(7);
 //        employee.setName("Carla");
@@ -35,7 +36,8 @@ public class Main {
 //        System.out.print(employee);
 //        employeeDAO.update(employee);
 //        System.out.print(employee);
-        System.out.print(employeeDAO.findById(3));
+        System.out.print(employeeDAO.findById(2));
+//        moduleDAO.findAll().forEach(System.out::println);
 //        employeeDAO.findAll().forEach(System.out::println);
 //        employeeDAO.delete(7);
 

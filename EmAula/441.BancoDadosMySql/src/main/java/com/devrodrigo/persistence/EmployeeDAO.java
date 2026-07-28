@@ -2,7 +2,7 @@ package com.devrodrigo.persistence;
 
 import com.devrodrigo.persistence.entity.ContactEntity;
 import com.devrodrigo.persistence.entity.EmployeeEntity;
-
+import com.devrodrigo.persistence.entity.ModuleEntity;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.OffsetDateTime;
@@ -155,40 +155,72 @@ public class EmployeeDAO {
 
     public EmployeeEntity findById(final long id){
         final var entity = new EmployeeEntity();
+        entity.setContacts(new ArrayList<>());
+        entity.setModules(new ArrayList<>());
 
         // Pesquisa pessoal, usando o PreparedStatement para melhorar a concatenação
         final String sql = "SELECT e.id as employee_id, " +
                 "e.name, e.salary, e.birthday, c.id as contact_id, " +
-                "c.description, c.type FROM employees e LEFT JOIN contacts c ON c.employee_id = e.id WHERE e.id = ?";
+                "c.description, c.type, " +
+                "m.id as module_id, m.name as module_name " +
+                "FROM employees e " +
+                "LEFT JOIN contacts c " +
+                    "ON c.employee_id = e.id " +
+                "LEFT JOIN accesses a " +
+                    " ON e.id = a.employee_id " +
+                "LEFT JOIN modules m " +
+                    "ON m.id = a.module_id " +
+                " WHERE e.id = ?";
         try(
                 var connection = ConnectUtil.getConnection();
-
                 var statement = connection.prepareStatement(sql)
         ) {
             // setar variável
             statement.setLong(1, id);
-            statement.executeQuery();
-            final var resultSet = statement.getResultSet();
-            if (resultSet.next()){
-                entity.setId(resultSet.getLong("employee_id"));
-                entity.setName(resultSet.getString("name"));
-                entity.setSalary(resultSet.getBigDecimal("salary"));
-                final var birthdayInstant = resultSet.getTimestamp("birthday").toInstant();
-                entity.setBirthday(OffsetDateTime.ofInstant(birthdayInstant, UTC));
-                entity.setContacts( new ArrayList<>());
-                do {
-                    final var contact = new ContactEntity();
-                    contact.setId(resultSet.getLong("contact_id"));
-                    contact.setDescription(resultSet.getString("description"));
-                    contact.setType(resultSet.getString("type"));
-                    entity.getContacts().add(contact);
-                } while (resultSet.next());
+            try (final var resultSet = statement.executeQuery()) {
+                boolean isEmployeeMapped = false;
+                while (resultSet.next()) {
+                    if (!isEmployeeMapped) {
+                        entity.setId(resultSet.getLong("employee_id"));
+                        entity.setName(resultSet.getString("name"));
+                        entity.setSalary(resultSet.getBigDecimal("salary"));
+
+                        final var birthdayTimestamp = resultSet.getTimestamp("birthday");
+                        if (birthdayTimestamp != null) {
+                            entity.setBirthday(OffsetDateTime.ofInstant(birthdayTimestamp.toInstant(), UTC));
+                        }
+                        isEmployeeMapped = true;
+                    }
+                    long contactId = resultSet.getLong("contact_id");
+                    // monta contato
+                    if (contactId > 0) {
+                        boolean jaExiste = entity.getContacts().stream().anyMatch(c -> c.getId() == contactId);
+                        if (!jaExiste) {
+                            final var contact = new ContactEntity();
+                            contact.setId(contactId);
+                            contact.setDescription(resultSet.getString("description"));
+                            contact.setType(resultSet.getString("type"));
+                            entity.getContacts().add(contact);
+                        }
+                    }
+                    // monta módulo
+                    long moduleId = resultSet.getLong("module_id");
+                    if (moduleId > 0) {
+                        boolean jaExiste = entity.getModules().stream().anyMatch(m -> m.getId() == moduleId);
+                        if (!jaExiste) {
+                            final var module = new ModuleEntity();
+                            module.setId(moduleId);
+                            module.setName(resultSet.getString("module_name"));
+                            entity.getModules().add(module); // Faltava adicionar na lista!
+                        }
+                    }
+                }
             }
-//            System.out.printf("Foram afetados %s, no banco de dados", statement.getUpdateCount());
         } catch (SQLException exception){
             exception.printStackTrace();
         }
-        return entity;    }
+        return entity;
+    }
 
     private String formatOffsetDateTime(final OffsetDateTime dateTime){
         final var utcDateTime = dateTime.withOffsetSameInstant(UTC);
