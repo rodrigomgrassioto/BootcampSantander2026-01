@@ -1,7 +1,6 @@
 package com.devrodrigo.persistence;
 
 import com.devrodrigo.persistence.entity.EmployeeEntity;
-import com.mysql.cj.jdbc.StatementImpl;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,6 +48,44 @@ public class EmployeeDAO {
             exception.printStackTrace();
         }
     }
+
+    public void insertBatch(final List<EmployeeEntity> entities){
+        // Pesquisa pessoal, usando o PreparedStatement para melhorar a concatenação
+
+        try (var connection = ConnectUtil.getConnection()) {
+            final String sql = "INSERT INTO employees (name, salary, birthday) VALUES (?, ?, ?)";
+
+            try(
+                    var statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
+            ) {
+                connection.setAutoCommit(false);
+                // inserindo as variáveis
+                for (final var entity : entities){
+                    statement.setString(1, entity.getName());
+                    statement.setBigDecimal(2, entity.getSalary());
+//                    final var timesTamp = Timestamp.valueOf(entity.getBirthday().atZoneSimilarLocal(UTC).toLocalDateTime());
+                    // Converte os milissegundos exatos do UTC diretamente para o Timestamp
+//                    final var timesTamp = Timestamp.from(entity.getBirthday().toInstant());
+//                    statement.setObject(3, entity.getBirthday().toLocalDateTime());
+                    statement.setObject(3, entity.getBirthday());
+
+
+//                    statement.setObject(3, timesTamp);
+
+                    statement.addBatch();
+                }
+                statement.executeBatch();
+                connection.commit();
+
+            } catch (SQLException exception){
+                connection.rollback();
+                exception.printStackTrace();
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
 
     public void update(final EmployeeEntity entity){
         // Pesquisa pessoal, usando o PreparedStatement para melhorar a concatenação
