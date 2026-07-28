@@ -13,10 +13,8 @@ dependencies {
     // BANCO DE DADOS
     // Source: https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
     implementation("com.mysql:mysql-connector-j:9.7.0")
-
     // Source: https://mvnrepository.com/artifact/org.flywaydb/flyway-core
     implementation("org.flywaydb:flyway-core:12.10.0")
-
     // Source: https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql
     implementation("org.flywaydb:flyway-mysql:12.10.0")
 
@@ -28,6 +26,9 @@ dependencies {
     // @Data             // Gera todos os Getters, Setters, toString, equals e hashCode automaticamente
     // @NoArgsConstructor // Gera um construtor vazio automático
     // @AllArgsConstructor // Gera um construtor com todos os atributos automático
+
+    // Source: https://mvnrepository.com/artifact/net.datafaker/datafaker
+    implementation("net.datafaker:datafaker:2.7.0")
 }
 
 tasks.test {
