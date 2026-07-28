@@ -175,10 +175,14 @@ public class EmployeeDAO {
                 entity.setSalary(resultSet.getBigDecimal("salary"));
                 final var birthdayInstant = resultSet.getTimestamp("birthday").toInstant();
                 entity.setBirthday(OffsetDateTime.ofInstant(birthdayInstant, UTC));
-                entity.setContact(new ContactEntity());
-                entity.getContact().setId(resultSet.getLong("contact_id"));
-                entity.getContact().setDescription(resultSet.getString("description"));
-                entity.getContact().setType(resultSet.getString("type"));
+                entity.setContacts( new ArrayList<>());
+                do {
+                    final var contact = new ContactEntity();
+                    contact.setId(resultSet.getLong("contact_id"));
+                    contact.setDescription(resultSet.getString("description"));
+                    contact.setType(resultSet.getString("type"));
+                    entity.getContacts().add(contact);
+                } while (resultSet.next());
             }
 //            System.out.printf("Foram afetados %s, no banco de dados", statement.getUpdateCount());
         } catch (SQLException exception){

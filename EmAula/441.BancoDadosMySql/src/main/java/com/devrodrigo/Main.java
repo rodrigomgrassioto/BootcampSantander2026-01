@@ -28,23 +28,29 @@ public class Main {
         final var contactDAO = new ContactDAO();
         final var employee = new EmployeeEntity();
 //        employee.setId(7);
-//        employee.setName("Rodrigo");
+//        employee.setName("Carla");
 //        employee.setSalary(new BigDecimal("10000.00"));
 //        employee.setBirthday(OffsetDateTime.now().minusYears(44));
-//        System.out.print(employee);
 //        employeeDAO.insert(employee);
+//        System.out.print(employee);
 //        employeeDAO.update(employee);
 //        System.out.print(employee);
-        System.out.print(employeeDAO.findById(1));
+        System.out.print(employeeDAO.findById(3));
 //        employeeDAO.findAll().forEach(System.out::println);
 //        employeeDAO.delete(7);
 
         // insert contato
 //        final var contact = new ContactEntity();
-//        contact.setDescription("kiki@gmail.com");
-//        contact.setType("kiki@gmail.com");
+//        contact.setDescription("carla@gmail.com");
+//        contact.setType("e-mail");
 //        contact.setEmployee(employee);
 //        contactDAO.insert(contact);
+//
+//        final var contact2 = new ContactEntity();
+//        contact2.setDescription("1234567890");
+//        contact2.setType("celular");
+//        contact2.setEmployee(employee);
+//        contactDAO.insert(contact2);
 
         // gerando dodos fakes
 //        final var entities = Stream.generate(() -> {
