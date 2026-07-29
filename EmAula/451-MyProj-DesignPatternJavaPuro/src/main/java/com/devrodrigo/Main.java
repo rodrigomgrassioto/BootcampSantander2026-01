@@ -1,14 +1,8 @@
-package com.devrodrigo;
-
 import com.devrodrigo.config_singleton.SystemConfig;
 import com.devrodrigo.facade.NotificationFacade;
-import com.devrodrigo.strategy.EmailStrategy;
-import com.devrodrigo.strategy.SmsStrategy;
-
 import java.util.Objects;
 
-public class Main {
-    public static void main(){
+void main(){
         SystemConfig config = SystemConfig.getInstance();
         SystemConfig config2 = SystemConfig.getInstance();
         System.out.println(config); // sempre mesmo endereço de memória
@@ -19,18 +13,9 @@ public class Main {
             System.out.println("Fim teste desenvolvimento.");
             return;
         }
-        var client = "Rodrigo";
         var email = "felecom@devrodrigo.com";
         var cellPhone = "12345678901";
-        var msg = "Bem Vindo "+ client;
 
-//        EmailStrategy emailStrategy = new EmailStrategy();
-//        emailStrategy.send(cellPhone, msg);
-
-//        SmsStrategy smsStrategy = new SmsStrategy();
-//        smsStrategy.send(cellPhone, msg);
         NotificationFacade facade = new NotificationFacade();
         facade.sendWelcomeNotification(email, cellPhone);
-
-    }
 }
