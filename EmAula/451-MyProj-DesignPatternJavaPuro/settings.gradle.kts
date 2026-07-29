@@ -1,0 +1,1 @@
+rootProject.name = "451-MyProj-DesignPatternJavaPuro"
