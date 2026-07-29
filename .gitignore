@@ -32,3 +32,10 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Pastas de compilação e caches do Gradle
+.gradle/
+build/
+
+# Pasta de compilação do Maven
+target/
