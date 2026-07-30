@@ -4,7 +4,11 @@ import com.devrodrigo.taskmanager.application.input.CreateTaskInput;
 import com.devrodrigo.taskmanager.application.output.TaskOutput;
 import com.devrodrigo.taskmanager.domain.Task;
 import com.devrodrigo.taskmanager.domain.TaskRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateTaskUseCase {
     private final TaskRepository repository;
 
