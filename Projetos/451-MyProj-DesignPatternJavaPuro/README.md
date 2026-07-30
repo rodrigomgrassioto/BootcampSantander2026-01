@@ -92,6 +92,9 @@ Ao rodar a aplicação, o ponto de entrada valida o comportamento esperado dos p
 ## ✅ Resultado esperado:
 ![img.png](img.png)
 
+## Observação, sobre Spring:
+Como ainda não tenho conhecimento sobre Spring pretendo após concluir o módudo dele, fazer esse mesmo projeto mas dai usando o Spring.
+
 ## 🤝 Conecte-se Comigo
 Estou focado em projetar arquiteturas backend sólidas, aplicando as melhores atualizações do ecossistema Java. Sinta-se à vontade para analisar meus repositórios ou entrar em contato!
 
