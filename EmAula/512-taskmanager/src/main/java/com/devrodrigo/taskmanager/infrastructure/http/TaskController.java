@@ -2,11 +2,9 @@ package com.devrodrigo.taskmanager.infrastructure.http;
 
 
 import com.devrodrigo.taskmanager.application.CreateTaskUseCase;
-import com.devrodrigo.taskmanager.application.input.CreateTaskInput;
 import com.devrodrigo.taskmanager.infrastructure.http.request.CreateTaskRequest;
+import com.devrodrigo.taskmanager.infrastructure.http.response.TaskResponse;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/tasks")
@@ -18,8 +16,9 @@ public class TaskController {
     }
 
     @PostMapping
-    void create(@RequestBody CreateTaskRequest request) {
+    TaskResponse create(@RequestBody CreateTaskRequest request) {
         var input = request.toInput();
-        System.out.println(createTaskUseCase.execute(input));
+        var output =  createTaskUseCase.execute(input);
+        return TaskResponse.from(output);
     }
 }
