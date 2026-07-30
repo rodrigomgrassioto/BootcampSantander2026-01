@@ -50,6 +50,14 @@ public class Task {
         this.status = status;
     }
 
+    public void update (Optional<String> title,
+                        Optional<String> description,
+                        Optional<TaskStatus> status){
+        title.ifPresent(this::setTitle);
+        description.ifPresent(d -> this.setDescription(Optional.of(d)));
+        status.ifPresent(this::setStatus);
+    }
+
     @Override
     public String toString() {
         return "Task{" +
