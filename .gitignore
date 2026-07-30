@@ -1,14 +1,31 @@
+# Arquivo de ajuda do Spring
+HELP.md
+
+# Sistema Operacional (macOS)
+.DS_Store
+
+# ferramentas de compilação, artefatos e caches (Gradle e Maven)
+.gradle/
+build/
+target/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Kotlin
+.kotlin
+
+# ### IntelliJ IDEA ###
+.idea/
 *.iml
 **/*.iml
-.idea/
-
-### IntelliJ IDEA ###
+*.iws
+*.ipr
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-.kotlin
 
-### Eclipse ###
+# ### Eclipse & STS ###
 .apt_generated
 .classpath
 .factorypath
@@ -20,22 +37,12 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-### NetBeans ###
+# ### NetBeans ###
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 
-### VS Code ###
+# ### VS Code ###
 .vscode/
-
-### Mac OS ###
-.DS_Store
-
-# Pastas de compilação e caches do Gradle
-.gradle/
-build/
-
-# Pasta de compilação do Maven
-target/
