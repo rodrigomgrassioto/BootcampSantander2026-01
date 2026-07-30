@@ -3,10 +3,8 @@ package com.devrodrigo.taskmanager.infrastructure.http;
 
 import com.devrodrigo.taskmanager.application.CreateTaskUseCase;
 import com.devrodrigo.taskmanager.application.input.CreateTaskInput;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.devrodrigo.taskmanager.infrastructure.http.request.CreateTaskRequest;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -20,8 +18,8 @@ public class TaskController {
     }
 
     @PostMapping
-    void create() {
-        var input = new CreateTaskInput("Renovar passaporte", Optional.empty());
-        createTaskUseCase.execute(input);
+    void create(@RequestBody CreateTaskRequest request) {
+        var input = new CreateTaskInput(request.title(), request.description());
+        System.out.println(createTaskUseCase.execute(input));
     }
 }
