@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CreateTaskUseCase {
     private final TaskRepository repository;
@@ -19,6 +21,7 @@ public class CreateTaskUseCase {
     public TaskOutput execute(CreateTaskInput input) {
         var task =  new Task(input.title(), input.description());
         var saved = repository.save(task);
-        return TaskOutput.from(saved);
+//        return TaskOutput.from(saved);
+        return new TaskOutput("23ksj", "Teste", Optional.of("ERa uma vez"), "PENDING");
     }
 }
