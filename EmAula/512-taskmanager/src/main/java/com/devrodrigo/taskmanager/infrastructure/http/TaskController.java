@@ -19,7 +19,7 @@ public class TaskController {
 
     @PostMapping
     void create(@RequestBody CreateTaskRequest request) {
-        var input = new CreateTaskInput(request.title(), request.description());
+        var input = request.toInput();
         System.out.println(createTaskUseCase.execute(input));
     }
 }
