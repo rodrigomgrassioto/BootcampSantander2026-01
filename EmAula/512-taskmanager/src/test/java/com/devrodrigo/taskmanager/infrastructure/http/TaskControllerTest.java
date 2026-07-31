@@ -58,8 +58,10 @@ class TaskControllerTest {
             .andExpect(status().isCreated())
             .andDo(document("create-task",
                     requestFields(
-                            fieldWithPath("title").description("Titulo da terefa"),
-                            fieldWithPath("description").description("Descrição detalhada")
+                            fieldWithPath("title")
+                                    .description("Título da tarefa. + \n*Obrigatório.* Min: 3, Max: 100 caracteres."),
+                            fieldWithPath("description")
+                                    .description("Descrição detalhada da tarefa. + \n*Opcional.* Max: 500 caracteres.")
                     ),
                     responseFields(
                             fieldWithPath("id").description("Identificador único da terefa"),
@@ -92,24 +94,21 @@ class TaskControllerTest {
                             fieldWithPath("status").description("Status da terefa")
                     )
             ));
-
-
-
     }
 
-    @Test
-    void list() {
-    }
-
-    @Test
-    void read() {
-    }
-
-    @Test
-    void delete() {
-    }
-
-    @Test
-    void update() {
-    }
+//    @Test
+//    void list() {
+//    }
+//
+//    @Test
+//    void read() {
+//    }
+//
+//    @Test
+//    void delete() {
+//    }
+//
+//    @Test
+//    void update() {
+//    }
 }
