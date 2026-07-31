@@ -1,0 +1,33 @@
+= Documentação da API de Tarefas (TaskManager)
+Dev Rodrigo <rodrigo@email.com>
+:toc: left
+:toclevels: 2
+:sectnums:
+
+== Introdução
+Esta é a documentação oficial da API de gerenciamento de tarefas, gerada automaticamente através de testes de integração com Spring REST Docs.
+
+== Criar uma Nova Tarefa
+Para cadastrar uma tarefa no sistema, envie uma requisição HTTP POST para o endpoint correspondente.
+
+=== Exemplo de Requisição (CURL)
+include::{snippets}/create-task/curl-request.adoc[]
+
+=== Campos da Requisição (Payload)
+include::{snippets}/create-task/request-fields.adoc[]
+
+=== Exemplo de Resposta (HTTP)
+include::{snippets}/create-task/http-response.adoc[]
+
+
+== Buscar Tarefa por ID
+Endpoint utilizado para consultar os detalhes de uma tarefa específica informando seu UUID.
+
+=== Exemplo de Requisição (CURL)
+include::{snippets}/get-task-by-id/curl-request.adoc[]
+
+=== Parâmetros de Rota (Path Parameters)
+include::{snippets}/get-task-by-id/path-parameters.adoc[]
+
+=== Exemplo de Resposta (HTTP)
+include::{snippets}/get-task-by-id/http-response.adoc[]

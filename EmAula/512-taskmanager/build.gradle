@@ -2,6 +2,17 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '4.1.0'
     id 'io.spring.dependency-management' version '1.1.7'
+    // Spring REST Docs
+    id "org.asciidoctor.jvm.convert" version "4.0.5"
+}
+// Spring REST Docs
+asciidoctorj {
+    version = "3.0.0"
+}
+
+// Spring REST Docs
+configurations {
+    asciidoctorExt
 }
 
 group = 'com.devrodrigo'
@@ -16,6 +27,8 @@ java {
 
 repositories {
     mavenCentral()
+    // Caso o Gradle precise buscar pacotes de testes do Spring:
+    // maven { url 'https://repo.spring.io/release' }
 }
 
 dependencies {
@@ -29,8 +42,27 @@ dependencies {
 
     // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     implementation 'org.springframework.boot:spring-boot-starter-web:4.1.0'
+
+    // Spring REST Docs - Sem versão manual! O Spring Boot gerencia automaticamente
+    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+}
+
+// Spring REST Docs
+ext {
+    snippetsDir = file('build/generated-snippets')
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+
+    // Spring REST Docs
+    outputs.dir snippetsDir
+}
+
+// Spring REST Docs
+asciidoctor {
+    inputs.dir snippetsDir
+    configurations 'asciidoctorExt'
+    dependsOn test
 }
