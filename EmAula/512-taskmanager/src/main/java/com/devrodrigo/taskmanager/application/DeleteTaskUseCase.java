@@ -1,7 +1,7 @@
 package com.devrodrigo.taskmanager.application;
 
 import com.devrodrigo.taskmanager.domain.TaskId;
-import com.devrodrigo.taskmanager.domain.TaskNotFoundExpetion;
+import com.devrodrigo.taskmanager.domain.TaskNotFoundException;
 import com.devrodrigo.taskmanager.domain.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class DeleteTaskUseCase {
 
     public void execute(TaskId taskId){
         if (repository.findById(taskId).isEmpty()){
-            throw new TaskNotFoundExpetion(taskId);
+            throw new TaskNotFoundException(taskId);
         }
         repository.delete(taskId);
     }

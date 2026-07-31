@@ -2,7 +2,7 @@ package com.devrodrigo.taskmanager.application;
 
 import com.devrodrigo.taskmanager.application.output.TaskOutput;
 import com.devrodrigo.taskmanager.domain.TaskId;
-import com.devrodrigo.taskmanager.domain.TaskNotFoundExpetion;
+import com.devrodrigo.taskmanager.domain.TaskNotFoundException;
 import com.devrodrigo.taskmanager.domain.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ public class GetTaskByIdUseCase {
     }
 
     public TaskOutput execute(TaskId id){
-        return repository.findById(id).map(TaskOutput::from).orElseThrow(()-> new TaskNotFoundExpetion(id));
+        return repository.findById(id).map(TaskOutput::from).orElseThrow(()-> new TaskNotFoundException(id));
     }
 }

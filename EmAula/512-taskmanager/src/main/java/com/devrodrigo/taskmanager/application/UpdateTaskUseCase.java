@@ -3,7 +3,7 @@ package com.devrodrigo.taskmanager.application;
 import com.devrodrigo.taskmanager.application.input.UpdateTaskInput;
 import com.devrodrigo.taskmanager.application.output.TaskOutput;
 import com.devrodrigo.taskmanager.domain.TaskId;
-import com.devrodrigo.taskmanager.domain.TaskNotFoundExpetion;
+import com.devrodrigo.taskmanager.domain.TaskNotFoundException;
 import com.devrodrigo.taskmanager.domain.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class UpdateTaskUseCase {
     }
 
     public TaskOutput execute(TaskId taskId, UpdateTaskInput input){
-        var task = repository.findById(taskId).orElseThrow(() -> new TaskNotFoundExpetion(taskId));
+        var task = repository.findById(taskId).orElseThrow(() -> new TaskNotFoundException(taskId));
         task.update(input.title(), input.description(), input.status());
 
         var updated = repository.save(task);
