@@ -1,8 +1,7 @@
 # 🚀 TaskManager API - Spring Boot
-
-[![Java Version](https://shields.io)](https://java.net)
-[![Spring Boot](https://shields.io)](https://spring.io)
-[![Gradle](https://shields.io)](https://gradle.org)
+![Java](https://img.shields.io/badge/Java-26-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.1.0-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![Gradle](https://img.shields.io/badge/Gradle-9.6.1-02303A?style=for-the-badge&logo=gradle&logoColor=white)
 
 Um gerenciador de tarefas robusto desenvolvido em **Java 26** e **Spring Boot 4.1.0**. O projeto foi construído do zero aplicando conceitos avançados de arquitetura desacoplada, validações estritas de contratos e geração de documentação automatizada viva (Living Documentation) orientada a testes.
 
@@ -115,8 +114,7 @@ Para rodar a bateria de testes integrados e gerar a página final com todos os c
 O arquivo HTML interativo completo contendo exemplos em cURL, payloads de entrada/saída e status HTTP estruturados estará disponível em:
 👉 `build/docs/asciidoc/index.html`
 
-* [![Documentação da API](https://shields.io)]([https://github.io](https://github.com/rodrigomgrassioto/BootcampSantander2026-01/EmAula/512-taskmanager//src/docs/asciidoc/index.html))* [![Documentação da API](https://shields.io)]([https://github.io](https://github.com/rodrigomgrassioto/BootcampSantander2026-01/EmAula/512-taskmanager//src/docs/asciidoc/index.html))
-* 📄 [Visualizar Arquivo de Documentação (Asciidoc)](./src/docs/asciidoc/index.adoc)
+🌍 [Exemplo Documentação gerada automáticamente](https://htmlpreview.github.io/?https://github.com/rodrigomgrassioto/BootcampSantander2026-01/blob/512task-manager/EmAula/512-taskmanager/src/docs/asciidoc/index.html)
 
 ---
 
