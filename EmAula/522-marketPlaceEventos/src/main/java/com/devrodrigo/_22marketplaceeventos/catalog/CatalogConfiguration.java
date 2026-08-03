@@ -58,7 +58,7 @@ public class CatalogConfiguration {
         );
         return builder
                 .dataSource(dataSource)
-                .packages("com.devrodrigo._22marketplaceeventos")
+                .packages("com.devrodrigo._22marketplaceeventos.catalog")
                 .persistenceUnit("catalog")
                 .properties(jpaProperties.getProperties())
                 .build();
