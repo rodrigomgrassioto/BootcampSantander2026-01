@@ -78,4 +78,8 @@ public class Address {
     public void setCreatedOn(Instant createdOn) {
         this.createdOn = createdOn;
     }
+
+    public String toString(){
+        return String.format("%s, %s, %s, %s", street, postalCode, city, state);
+    }
 }
