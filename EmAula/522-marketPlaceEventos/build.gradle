@@ -31,7 +31,14 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+    implementation("org.springframework.boot:spring-boot-starter-validation")
 
+    // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-rest
+    implementation("org.springframework.boot:spring-boot-starter-data-rest")
+
+    // executar comandos post, get pelo navegador em http://localhost:8080/explorer/index.html#uri=/
+    implementation("org.springframework.data:spring-data-rest-hal-explorer")
 }
 
 tasks.named('test') {
