@@ -39,6 +39,9 @@ dependencies {
 
     // executar comandos post, get pelo navegador em http://localhost:8080/explorer/index.html#uri=/
     implementation("org.springframework.data:spring-data-rest-hal-explorer")
+
+    // Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 }
 
 tasks.named('test') {
