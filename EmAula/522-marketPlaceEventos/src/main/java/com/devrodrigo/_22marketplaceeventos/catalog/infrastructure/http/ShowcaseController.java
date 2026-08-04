@@ -1,6 +1,7 @@
 package com.devrodrigo._22marketplaceeventos.catalog.infrastructure.http;
 
 import com.devrodrigo._22marketplaceeventos.catalog.application.BrowseShowcaseUseCase;
+import com.devrodrigo._22marketplaceeventos.catalog.application.dto.EventOutput;
 import com.devrodrigo._22marketplaceeventos.catalog.domain.Event;
 import com.devrodrigo._22marketplaceeventos.catalog.domain.EventRepository;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class ShowcaseController {
     }
 
     @GetMapping
-    List<Event> browseShowcase() {
+    List<EventOutput> browseShowcase() {
         return browseShowcaseUseCase.execute();
     }
 }
