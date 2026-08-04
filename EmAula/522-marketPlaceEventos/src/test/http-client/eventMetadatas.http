@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "eventId": "2e108c97-a858-4cd6-9450-da143e8b6459",
-  "eventDescription": "Turnê de despedida",
+  "eventDescription": "Turnê de despedida 222",
   "technicalRequirements": {
     "soundSystem": "Line away",
     "minAge": "16",
@@ -14,7 +14,7 @@ Content-Type: application/json
     { "name": "Arquibancada", "price":  200.00}
   ],
   "seats": [
-    { "code": "PRE-01", "sectorName":  "Pista Premium"},
+    { "code": "PRE-01", "sectorName":  "Premium"},
     { "code": "ARQ-10", "sectorName":  "Arquibancada"}
   ]
 }
