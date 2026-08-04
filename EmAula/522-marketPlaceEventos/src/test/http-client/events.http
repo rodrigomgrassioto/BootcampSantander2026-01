@@ -1,0 +1,11 @@
+POST http://localhost:8080/events
+Content-Type: application/json
+
+{
+  "title": "Evento automático #{{$random.integer(1,1000)}} ",
+  "date": "{{$timestamp}}"
+}
+
+<> 2026-08-03T212547.201.json
+
+###
