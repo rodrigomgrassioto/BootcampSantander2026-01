@@ -50,13 +50,13 @@ public class TicketingConfiguration {
 
     @Qualifier("ticketing")
     @Bean(defaultCandidate = false)
-    public LocalContainerEntityManagerFactoryBean ticketingEntityManagerFactoryProprieties(
+    public LocalContainerEntityManagerFactoryBean ticketingEntityManagerFactory (
             @Qualifier("ticketing") DataSource dataSource,
             @Qualifier("ticketing") JpaProperties jpaProperties
     ) {
         var builder = new EntityManagerFactoryBuilder(
                 new HibernateJpaVendorAdapter(),
-                x -> new LinkedHashMap<>(jpaProperties.getProperties()),
+                           x -> new LinkedHashMap<>(jpaProperties.getProperties()),
                 null
         );
 
