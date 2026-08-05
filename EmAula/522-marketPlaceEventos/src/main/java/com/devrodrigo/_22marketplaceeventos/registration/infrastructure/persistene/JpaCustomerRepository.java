@@ -1,9 +1,11 @@
 package com.devrodrigo._22marketplaceeventos.registration.infrastructure.persistene;
 
+import com.devrodrigo._22marketplaceeventos.common.infrastructure.event.dto.CustomerCreated;
 import com.devrodrigo._22marketplaceeventos.registration.domain.Customer;
 import com.devrodrigo._22marketplaceeventos.registration.domain.CustomerId;
 import com.devrodrigo._22marketplaceeventos.registration.domain.CustomerRepository;
 import com.devrodrigo._22marketplaceeventos.registration.infrastructure.persistene.repository.CustomerEntityRepository;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,15 +17,20 @@ import java.util.stream.StreamSupport;
 public class JpaCustomerRepository implements CustomerRepository {
 
     private final CustomerEntityRepository customerEntityRepository;
+    private final ApplicationEventPublisher publisher;
 
-    public JpaCustomerRepository(CustomerEntityRepository customerEntityRepository) {
+
+    public JpaCustomerRepository
+            (CustomerEntityRepository customerEntityRepository, ApplicationEventPublisher publisher) {
         this.customerEntityRepository = customerEntityRepository;
+        this.publisher = publisher;
     }
 
     @Override
     public Customer save(Customer customer) {
         var entity = mapper(customer);
         customerEntityRepository.save(entity);
+        publisher.publishEvent(new CustomerCreated(customer.getId().toString(), customer.getName()));
         return customer;
     }
 
