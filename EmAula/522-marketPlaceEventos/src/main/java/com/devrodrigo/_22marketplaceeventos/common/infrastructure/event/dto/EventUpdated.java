@@ -13,7 +13,7 @@ public record EventUpdated(String id, List<Sector> sectors) {
         List<Sector> sectors = event.getSectors().stream()
                 .map(s -> Sector.from(s, event.getSeats()))
                 .toList();
-        return new EventUpdated(event.getId(), sectors);
+        return new EventUpdated(event.getEventId().toString(), sectors);
     }
 
     public record Sector(String id, BigDecimal price, List<Seat> seats ) {
