@@ -58,7 +58,7 @@ public class RegistrationConfiguration {
         );
         return builder
                 .dataSource(dataSource)
-                .packages("com.devrodrigo._22marketplaceeventos")
+                .packages("com.devrodrigo._22marketplaceeventos.registration")
                 .persistenceUnit("registration")
                 .properties(jpaProperties.getProperties())
                 .build();

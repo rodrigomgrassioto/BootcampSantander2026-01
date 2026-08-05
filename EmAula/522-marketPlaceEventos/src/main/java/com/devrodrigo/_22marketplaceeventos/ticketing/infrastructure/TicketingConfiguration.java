@@ -62,7 +62,7 @@ public class TicketingConfiguration {
 
         return builder
                 .dataSource(dataSource)
-                .packages("com.devrodrigo.ticketing")
+                .packages("com.devrodrigo._22marketplaceeventos.ticketing")
                 .persistenceUnit("ticketing")
                 .build();
     }
