@@ -2,7 +2,7 @@ POST http://localhost:8080/eventMetadatas
 Content-Type: application/json
 
 {
-  "eventId": "2e108c97-a858-4cd6-9450-da143e8b6459",
+  "eventId": "bb59ff18-d0dd-4911-9880-2bca64283a19",
   "eventDescription": "Turnê de despedida 222",
   "technicalRequirements": {
     "soundSystem": "Line away",
