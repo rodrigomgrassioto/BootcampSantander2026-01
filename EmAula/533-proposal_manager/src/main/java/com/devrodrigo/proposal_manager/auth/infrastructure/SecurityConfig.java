@@ -26,12 +26,17 @@ public class SecurityConfig {
 
     @Bean
     UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails user = User.withUsername("influencer")
+        UserDetails influencer = User.withUsername("influencer")
                 .password(passwordEncoder.encode("password"))
                 .roles("INFLUENCER")
                 .build();
 
-        return new InMemoryUserDetailsManager(user);
+        UserDetails brand = User.withUsername("brand")
+                .password(passwordEncoder.encode("password"))
+                .roles("BRAND")
+                .build();
+
+        return new InMemoryUserDetailsManager(influencer, brand);
     }
 
     @Bean
