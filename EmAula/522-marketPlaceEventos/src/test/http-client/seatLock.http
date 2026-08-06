@@ -1,0 +1,10 @@
+POST http://localhost:8080/ticketing/events/4921e2a3-99b7-42f6-8739-c016545f1d59/seats/select
+Content-Type: application/json
+Accept: application/json
+X-CUSTOMER-ID: 6064a713-e757-4eee-90ef-88855e691f2e
+
+{
+  "id": "ARQ-10"
+}
+
+###

@@ -1,19 +1,21 @@
 package com.devrodrigo._22marketplaceeventos.ticketing.infrastructure.persistence.repository;
 
-import com.devrodrigo._22marketplaceeventos.ticketing.domain.Event;
-import com.devrodrigo._22marketplaceeventos.ticketing.domain.EventRepository;
-import com.devrodrigo._22marketplaceeventos.ticketing.domain.Seat;
-import com.devrodrigo._22marketplaceeventos.ticketing.domain.Sector;
+import com.devrodrigo._22marketplaceeventos.ticketing.domain.*;
+import com.devrodrigo._22marketplaceeventos.ticketing.infrastructure.persistence.entity.SeatLock;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.List;
 
+// work of unit é o padrão para quando se usa dois bancos de dados
 @Repository
-public class PostgresEventRepository implements EventRepository {
+public class WorkOfUnitEventRepository implements EventRepository {
     private final EventCrudRepository eventCrudRepository;
+    private final RedisSeatLockRepository redisSeatLockRepository;
 
-    public PostgresEventRepository(EventCrudRepository eventCrudRepository) {
+    public WorkOfUnitEventRepository(EventCrudRepository eventCrudRepository, RedisSeatLockRepository redisSeatLockRepository) {
         this.eventCrudRepository = eventCrudRepository;
+        this.redisSeatLockRepository = redisSeatLockRepository;
     }
 
     @Override
@@ -42,5 +44,22 @@ public class PostgresEventRepository implements EventRepository {
                 sectots);
 
         eventCrudRepository.save(entity);
+    }
+
+    @Override
+    public boolean existsSeat(EventId eventId, SeatId seatId) {
+        return eventCrudRepository.existsByCorrelationIdAndSectors_Seats_CorrelationId(eventId.id(), seatId.id());
+    }
+
+    @Override
+    public boolean tryLockSeat(EventId eventId, SeatId seatId, CustomerId customerId) {
+        String lockId = eventId.id().toString()+":"+seatId.id();
+
+        if (redisSeatLockRepository.existsById(lockId)) {
+            return false;
+        }
+        var lock = new SeatLock(lockId, customerId.id().toString(), Instant.now());
+        redisSeatLockRepository.save(lock);
+        return true;
     }
 }

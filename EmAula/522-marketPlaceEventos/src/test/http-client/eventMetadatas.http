@@ -2,8 +2,8 @@ POST http://localhost:8080/eventMetadatas
 Content-Type: application/json
 
 {
-  "eventId": "bb59ff18-d0dd-4911-9880-2bca64283a19",
-  "eventDescription": "Turnê de despedida 222",
+  "eventId": "4921e2a3-99b7-42f6-8739-c016545f1d59",
+  "eventDescription": "Turnê de despedida - marcar assento",
   "technicalRequirements": {
     "soundSystem": "Line away",
     "minAge": "16",
