@@ -26,6 +26,9 @@ public class SecurityConfig {
             RestUsernamePasswordAuthenticationFilter restUsernamePasswordAuthenticationFilter) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable) // desativa token csrf usado em forms
+
+                .securityContext(context -> context.requireExplicitSave(false)) // ativa cookie entre requisições
+
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/login").permitAll()
                         .anyRequest().authenticated())

@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @GetMapping
     public String test(@AuthenticationPrincipal UserDetails user) {
-        return "User = " + user;
+        return "Olá = " + user.getUsername();
     }
 
     @GetMapping("/influencer")
     @PreAuthorize("hasRole('INFLUENCER')")
     public String influencer(@AuthenticationPrincipal UserDetails user) {
-        return "influencer = " + user;
+        return "Está em influencer. Usuário logado é: " + user.getUsername();
     }
 
     @GetMapping("/brand")
     @PreAuthorize("hasRole('BRAND')")
     public String brand(@AuthenticationPrincipal UserDetails user) {
-        return "brand = " + user;
+        return "Está em brand. Usuário logado é: " + user.getUsername();
     }
 }
