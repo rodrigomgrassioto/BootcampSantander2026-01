@@ -6,16 +6,12 @@ import com.devrodrigo.proposal_manager.auth.infrastructure.persistence.repositor
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -71,17 +67,17 @@ public class SecurityConfig {
                 User fitnessInfluencer = new User();
                 fitnessInfluencer.setUsername("fitness_vibe");
                 fitnessInfluencer.setPassword(passwordEncoder.encode("password"));
-                fitnessInfluencer.setRole(UserRole.INFLUENCER);
+                fitnessInfluencer.setRole(UserRole.ROLE_INFLUENCER);
 
                 User techInfluencer = new User();
                 techInfluencer.setUsername("tech_guru");
                 techInfluencer.setPassword(passwordEncoder.encode("password"));
-                techInfluencer.setRole(UserRole.INFLUENCER);
+                techInfluencer.setRole(UserRole.ROLE_INFLUENCER);
 
                 User brand = new User();
                 brand.setUsername("logistics");
                 brand.setPassword(passwordEncoder.encode("password"));
-                brand.setRole(UserRole.BRAND);
+                brand.setRole(UserRole.ROLE_BRAND);
 
                 repository.saveAll(List.of(fitnessInfluencer, techInfluencer, brand));
             }
