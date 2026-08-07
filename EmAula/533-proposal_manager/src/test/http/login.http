@@ -4,7 +4,7 @@ Content-Type: application/json
 #Accept: application/json
 
 {
-  "username": "brand",
+  "username": "logistics",
   "password": "password"
 }
 
@@ -13,4 +13,4 @@ GET http://localhost:8080
 // influencer
 #Cookie: JSESSIONID=7BA8A7B992C2F446DB1C79CDA295D77B
 // brand
-Cookie: JSESSIONID=62A53C7E034B067B5883350989E06E0D
+Cookie: JSESSIONID=7D34735076E3F5A68C438ECFFC033870
