@@ -1,0 +1,20 @@
+#@no-cookie-jar
+POST http://localhost:8080/proposals
+Content-Type: application/json
+#Cookie: JSESSIONID=B15E642711574DA27311A186325316CB // brand
+#Cookie: JSESSIONID=FC26631F5B30C1AD414706DA899D85D7 // fitness
+Cookie: JSESSIONID=3F558E94AF7ECC27FB9EA60051469EBB // guru
+
+{
+    "title": "Tech-guru 2",
+    "description": "Tech guru teste description 2"
+}
+
+###
+
+GET http://localhost:8080/proposals
+Content-Type: application/json
+Cookie: JSESSIONID=B15E642711574DA27311A186325316CB // brand
+#Cookie: JSESSIONID=FC26631F5B30C1AD414706DA899D85D7 // fitness
+#Cookie: JSESSIONID=3F558E94AF7ECC27FB9EA60051469EBB // guru
+
