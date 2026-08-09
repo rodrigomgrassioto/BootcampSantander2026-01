@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '4.1.0'
     id 'io.spring.dependency-management' version '1.1.7'
+    id("io.freefair.lombok") version "9.5.0"
 }
 
 group = 'com.devrodrigo'
@@ -22,6 +23,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // banco em memória necessário add @EnableMapRepositories em Application
+    implementation 'org.springframework.data:spring-data-keyvalue'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest' // expõe repositório como controller
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // monitora a saúde da aplicação. Pode ser visto em RUN na guia Health ou em localhost:8080/actuator/health
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 tasks.named('test') {

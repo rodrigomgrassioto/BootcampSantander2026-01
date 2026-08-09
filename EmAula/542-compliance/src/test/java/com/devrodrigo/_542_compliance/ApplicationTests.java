@@ -1,4 +1,4 @@
-package com.devrodrigo._542;
+package com.devrodrigo._542_compliance;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
