@@ -8,5 +8,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.UUID;
 
 @RepositoryRestResource(path = "companies") // expõe para API
-public interface CompanyRepository extends CrudRepository<CompanyEntity, UUID> {
+public interface CompanyEntityRepository extends CrudRepository<CompanyEntity, UUID> {
 }

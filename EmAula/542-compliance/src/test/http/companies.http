@@ -3,7 +3,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/companies/7091bb15-8ccf-4491-8701-791250692ecf
+GET http://localhost:8080/companies/bb0c03d6-20f6-4914-be84-69bb899a9eca
 Accept: application/json
 
 ###
