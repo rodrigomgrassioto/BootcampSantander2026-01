@@ -1,0 +1,18 @@
+GET http://localhost:8080/companies
+Accept: application/json
+
+###
+
+GET http://localhost:8080/companies/7091bb15-8ccf-4491-8701-791250692ecf
+Accept: application/json
+
+###
+
+POST http://localhost:8080/companies
+#Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Logistics 1",
+    "registrationNumber": "REG-1"
+}
