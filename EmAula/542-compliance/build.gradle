@@ -19,6 +19,10 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    set('springCloudVersion', "2025.1.2")
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -30,7 +34,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     // monitora a saúde da aplicação. Pode ser visto em RUN na guia Health ou em localhost:8080/actuator/health
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // API Client - Pego config em https://start.spring.io/
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 }
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
 
 tasks.named('test') {
     useJUnitPlatform()
