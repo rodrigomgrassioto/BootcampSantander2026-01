@@ -1,6 +1,6 @@
 package com.devrodrigo._542_compliance.infrastructure.persistence.entity;
 
-//import com.devrodrigo._542_compliance.domain.Company;
+import com.devrodrigo._542_compliance.domain.Company;
 //import com.devrodrigo._542_compliance.domain.CompanyId;
 //import com.devrodrigo._542_compliance.domain.RiskAssessment;
 import lombok.AllArgsConstructor;
@@ -22,15 +22,15 @@ public class CompanyEntity {
     private String name, registrationNumber;
 //    private RiskAssessment assessment;
 
-//    public static CompanyEntity from(Company company) {
-//        return new CompanyEntity(
-//                company.getId().id(),
-//                company.getName(),
-//                company.getRegistrationNumber(),
+    public static CompanyEntity from(Company company) {
+        return new CompanyEntity(
+                company.getId().id(),
+                company.getName(),
+                company.getRegistrationNumber()
 //                company.getRiskAssessment().orElse(null)
-//
-//        );
-//    }
+
+        );
+    }
 //    public Company toDomain(){
 //        return new Company(
 //                new CompanyId(this.getId()),
