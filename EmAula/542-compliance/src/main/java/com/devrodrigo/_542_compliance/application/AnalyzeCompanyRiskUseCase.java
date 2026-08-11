@@ -1,7 +1,7 @@
 package com.devrodrigo._542_compliance.application;
 
 import com.devrodrigo._542_compliance.domain.Company;
-import com.devrodrigo._542_compliance.infrastructure.persistence.rest.client.SanctionClient;
+import com.devrodrigo._542_compliance.infrastructure.rest.client.SanctionClient;
 import org.springframework.stereotype.Service;
 
 @Service

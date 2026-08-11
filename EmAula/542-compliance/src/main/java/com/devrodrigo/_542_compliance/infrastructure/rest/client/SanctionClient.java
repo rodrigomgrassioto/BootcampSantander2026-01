@@ -1,4 +1,4 @@
-package com.devrodrigo._542_compliance.infrastructure.persistence.rest.client;
+package com.devrodrigo._542_compliance.infrastructure.rest.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

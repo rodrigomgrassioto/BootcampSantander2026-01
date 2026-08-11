@@ -13,8 +13,8 @@ POST http://localhost:8080/companies
 Content-Type: application/json
 
 {
-    "name": "Logistics 4",
-    "registrationNumber": "Magalu"
+    "name": "Logistics 5",
+    "registrationNumber": "Era 5"
 }
 
 ###
