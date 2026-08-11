@@ -3,7 +3,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/companies/bb0c03d6-20f6-4914-be84-69bb899a9eca
+GET http://localhost:8080/companies/b593d88c-2518-4b69-8142-471453a73aa7
 Accept: application/json
 
 ###
@@ -19,8 +19,11 @@ Content-Type: application/json
 
 ###
 
-#GET http://localhost:4500/sanctions/companies/registrationNumber
+
 GET http://localhost:3001/sanctions/companies/56
 X-API-KEY: kyc-secret-123
-#Accept: application/json
-#Content-Type: application/json
+
+###
+
+GET http://localhost:3002/aml/v1/screening/teg-45
+Authorization: Bearer xyz123
