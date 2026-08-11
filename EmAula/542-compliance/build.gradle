@@ -37,6 +37,9 @@ dependencies {
 
     // API Client - Pego config em https://start.spring.io/
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    // tratamento de rro fallback
+    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
 }
 
 dependencyManagement {
