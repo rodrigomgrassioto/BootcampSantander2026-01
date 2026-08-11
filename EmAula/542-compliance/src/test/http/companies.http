@@ -19,8 +19,8 @@ Content-Type: application/json
 
 ###
 
-GET https://a2fa188f-7b2b-41fa-b4d4-18aae59f1fef.mock.pstmn.io/sanctions/companies/56
 #GET http://localhost:4500/sanctions/companies/registrationNumber
-Accept: application/json
-Content-Type: application/json
-
+GET http://localhost:3001/sanctions/companies/56
+X-API-KEY: kyc-secret-123
+#Accept: application/json
+#Content-Type: application/json
