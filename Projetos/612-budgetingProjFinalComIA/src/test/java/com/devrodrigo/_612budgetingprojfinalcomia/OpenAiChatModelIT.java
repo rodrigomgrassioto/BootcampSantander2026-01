@@ -26,6 +26,7 @@ public class OpenAiChatModelIT {
 
     @Test
     void should_receiveResponse_when_chatModelIsCalled() {
+        /* mudando essa config para application.properties
         var options = OpenAiChatOptions.builder()
                 .model("gpt-4o-mini")
                 .temperature(0.8) // criatividade do modelo, ser criativo
@@ -35,6 +36,7 @@ public class OpenAiChatModelIT {
         var chatModel = OpenAiChatModel.builder()
                 .options(options)
                 .build();
+         */
 
         var response = chatModel.call("Hello, how are you?");
 
