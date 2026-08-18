@@ -1,3 +1,6 @@
 ### GET request to example server
 GET http://localhost:8080/api/chat-model?prompt=oi
 ###
+
+GET http://localhost:8080/api/chat-client?prompt=Boa tarde, tudo bem?
+###
