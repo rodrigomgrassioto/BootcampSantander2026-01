@@ -18,6 +18,8 @@ import java.time.Duration;
 @RestController
 @RequestMapping("api")
 public class TranscriptionWhisperController {
+    record WhisperResponse(String text) {
+    }
 
     private final RestClient restClient;
 
@@ -46,10 +48,13 @@ public class TranscriptionWhisperController {
                 .contentType(MediaType.MULTIPART_FORM_DATA)
                 .body(parts)
                 .retrieve()
-                .body(String.class);
+                .body(WhisperResponse.class); // converte para objeto
 
-        System.out.println("Resposta do Whisper: " + response);
+        System.out.println("Json é: " + response);
 
-        return response;
+        var text = response.text().replace("\n", "");
+        System.out.println("Text é:: " + text);
+
+        return text;
     }
 }
