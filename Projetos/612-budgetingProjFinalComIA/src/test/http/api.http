@@ -9,7 +9,15 @@ POST http://localhost:8080/api/transcribe HTTP/1.1
 Content-Type: multipart/form-data; boundary=boundary
 
 --boundary
-Content-Disposition: form-data; name="file"; filename="recording-1.m4a"
+Content-Disposition: form-data; name="file"; filename="recording-3.m4a"
 
-< ../../src/test/resources/audio/recording-1.m4a
+< ../../src/test/resources/audio/recording-3.m4a
 --boundary
+
+###
+POST http://localhost:8080/api/sinthesize
+Content-Type: application/json
+
+{
+"text": "O que me diz sobre o dia?"
+}
