@@ -21,3 +21,13 @@ Content-Type: application/json
 {
 "text": "O que me diz sobre o dia?"
 }
+
+###
+POST http://localhost:8080/transactions
+Content-Type: application/json
+
+{
+  "description": "Compra no mercadinho 4",
+  "category": "GROCERIES",
+  "amount": 12534
+}
