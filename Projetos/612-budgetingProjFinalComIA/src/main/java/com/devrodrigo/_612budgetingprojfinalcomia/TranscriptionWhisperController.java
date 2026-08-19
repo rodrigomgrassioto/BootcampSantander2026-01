@@ -1,6 +1,5 @@
 package com.devrodrigo._612budgetingprojfinalcomia;
 
-import org.springframework.ai.audio.transcription.TranscriptionModel;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.util.LinkedMultiValueMap;
@@ -38,8 +37,6 @@ public class TranscriptionWhisperController {
 
     @PostMapping(value = "/transcribe", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     String transcribe(@RequestParam("file") MultipartFile file) throws IOException {
-        System.out.println("file é: "+file);
-
         var parts = new LinkedMultiValueMap<String, Object>();
         parts.add("file", file.getResource());
 
@@ -50,11 +47,7 @@ public class TranscriptionWhisperController {
                 .retrieve()
                 .body(WhisperResponse.class); // converte para objeto
 
-        System.out.println("Json é: " + response);
-
         var text = response.text().replace("\n", "");
-        System.out.println("Text é:: " + text);
-
         return text;
     }
 }
