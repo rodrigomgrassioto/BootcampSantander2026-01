@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("api")
 public class TranscriptionWhisperController {
@@ -18,10 +20,11 @@ public class TranscriptionWhisperController {
     }
 
     @PostMapping(value = "/transcribe", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    String transcribe(@RequestParam("file") MultipartFile file) {
+    String transcribe(@RequestParam("file") MultipartFile file) throws IOException {
         System.out.println("file é: "+file);
         var resource = file.getResource();
         System.out.println("Resource é: "+resource);
+        System.out.println("Resource.getFilePath é: "+resource.getFilePath());
         return transcriptionModel.transcribe(resource);
     }
 }
