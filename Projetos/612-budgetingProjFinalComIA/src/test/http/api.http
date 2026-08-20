@@ -31,3 +31,8 @@ Content-Type: application/json
   "category": "GROCERIES",
   "amount": 12534
 }
+
+###
+GET http://localhost:8080/transactions/GROCERIES
+###
+GET http://localhost:8080/transactions/AUTO
