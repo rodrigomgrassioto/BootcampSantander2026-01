@@ -15,7 +15,7 @@ import java.net.http.HttpClient;
 import java.time.Duration;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api-whisper-puro")
 public class TranscriptionWhisperController {
     record WhisperResponse(String text) {
     }

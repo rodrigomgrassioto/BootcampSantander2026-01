@@ -10,7 +10,7 @@ import org.springframework.web.client.RestClient;
 import java.net.http.HttpClient;
 import java.time.Duration;
 
-public class OpenAiTranscriptionModelWithWhisperIT {
+public class OpenAiTranscriptionModelWhisperOneFileIT {
 
     @Test
     void should_transcribe_audio() {

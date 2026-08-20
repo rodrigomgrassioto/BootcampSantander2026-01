@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @EnabledIfEnvironmentVariable(named = "OPENAI_API_KEY", matches = ".+")
-public class OpenAiTranscriptionModelIT {
+public class OpenAiTranscriptionModelWhisperApiIT {
     record WhisperResponse(String text) {
     }
 

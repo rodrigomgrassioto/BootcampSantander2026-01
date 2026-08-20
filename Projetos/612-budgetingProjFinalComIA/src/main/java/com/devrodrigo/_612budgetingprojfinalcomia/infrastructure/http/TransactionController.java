@@ -34,6 +34,8 @@ public class TransactionController {
 //    private final TranscriptionModel transcriptionModel; // não usando pois estou usando o whisper e não modelo da OPENIA
     private final ChatClient chatClient;
     private final TextToSpeechModel textToSpeechModel;
+    private final TranscriptionModel transcriptionModel;
+
 
     // requisito usando whisper para converter audio em texto
     private final RestClient restClient;
@@ -43,11 +45,13 @@ public class TransactionController {
             ListTransactionsByCategoryUseCase listTransactionsByCategoryUseCase,
             @Value("classpath:prompts/system-message.st") Resource systemPrompt,
             TextToSpeechModel textToSpeechModel,
+            TranscriptionModel transcriptionModel,
             ChatClient.Builder chatClientBuilder
     ) throws IOException {
         this.persistTransactionUseCase = persistTransactionUseCase;
         this.listTransactionsByCategoryUseCase = listTransactionsByCategoryUseCase;
         this.textToSpeechModel = textToSpeechModel;
+        this.transcriptionModel = transcriptionModel;
         this.chatClient = chatClientBuilder
                 .defaultSystem(systemPrompt.getContentAsString(Charset.defaultCharset()))
                 .defaultTools(persistTransactionUseCase, listTransactionsByCategoryUseCase)
@@ -87,8 +91,8 @@ public class TransactionController {
     }
 
 
-    @PostMapping(value = "/ai", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = "audio/mp3")
-    ResponseEntity<Resource> transcribe(@RequestParam("file") MultipartFile file) throws IOException {
+    @PostMapping(value = "/ai-api-whisper-puro", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = "audio/mp3")
+    ResponseEntity<Resource> transcribeWithWhisper(@RequestParam("file") MultipartFile file) throws IOException {
         var parts = new LinkedMultiValueMap<String, Object>();
         parts.add("file", file.getResource());
 
@@ -106,6 +110,23 @@ public class TransactionController {
 
         // converter texto em audio
         byte[] audio = textToSpeechModel.call(resultTextIa);
+        var resource = new ByteArrayResource(audio);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        ContentDisposition.attachment()
+                                .filename("audio.mp3")
+                                .build()
+                                .toString())
+                .body(resource);
+    }
+
+    @PostMapping(value = "/ai-api-openai", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = "audio/mp3")
+    ResponseEntity<Resource> transcribe(@RequestParam("file") MultipartFile file) throws IOException {
+        var userMessage = transcriptionModel.transcribe(file.getResource());
+        var result = chatClient.prompt().user(userMessage).call().content();
+
+        byte[] audio = textToSpeechModel.call(result);
         var resource = new ByteArrayResource(audio);
 
         return ResponseEntity.ok()
